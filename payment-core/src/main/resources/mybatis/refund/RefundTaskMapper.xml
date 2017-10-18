@@ -1,0 +1,220 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.lsh.payment.core.dao.refund.RefundTaskDao" >
+  <resultMap id="BaseResultMap" type="com.lsh.payment.core.model.refund.RefundTask" >
+    <id column="id" property="id" jdbcType="BIGINT" />
+    <result column="ref_id" property="refId" jdbcType="VARCHAR" />
+    <result column="task_type" property="taskType" jdbcType="TINYINT" />
+    <result column="content" property="content" jdbcType="VARCHAR" />
+    <result column="created_at" property="createdAt" jdbcType="TIMESTAMP" />
+    <result column="updated_at" property="updatedAt" jdbcType="TIMESTAMP" />
+    <result column="times" property="times" jdbcType="INTEGER" />
+    <result column="is_valid" property="isValid" jdbcType="TINYINT" />
+    <result column="status" property="status" jdbcType="TINYINT" />
+    <result column="ext" property="ext" jdbcType="VARCHAR" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    id, ref_id, task_type, content, created_at, updated_at, times, is_valid, status,
+    ext
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Long" >
+    select 
+    <include refid="Base_Column_List" />
+    from refund_task
+    where id = #{id,jdbcType=BIGINT}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Long" >
+    delete from refund_task
+    where id = #{id,jdbcType=BIGINT}
+  </delete>
+  <insert id="insert" parameterType="com.lsh.payment.core.model.refund.RefundTask" >
+    insert into refund_task (id, ref_id, task_type, 
+      content, created_at, updated_at
+      times, is_valid, status, 
+      ext)
+    values (#{id,jdbcType=BIGINT}, #{refId,jdbcType=VARCHAR}, #{taskType,jdbcType=TINYINT}, 
+      #{content,jdbcType=VARCHAR}, #{createdAt,jdbcType=TIMESTAMP}, #{updatedAt,jdbcType=TIMESTAMP},
+      #{times,jdbcType=INTEGER}, #{isValid,jdbcType=TINYINT}, #{status,jdbcType=TINYINT}, 
+      #{ext,jdbcType=VARCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="com.lsh.payment.core.model.refund.RefundTask" >
+    insert into refund_task
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        id,
+      </if>
+      <if test="refId != null" >
+        ref_id,
+      </if>
+      <if test="taskType != null" >
+        task_type,
+      </if>
+      <if test="content != null" >
+        content,
+      </if>
+      <if test="createdAt != null" >
+        created_at,
+      </if>
+      <if test="updatedAt != null" >
+        updated_at,
+      </if>
+      <if test="times != null" >
+        times,
+      </if>
+      <if test="isValid != null" >
+        is_valid,
+      </if>
+      <if test="status != null" >
+        status,
+      </if>
+      <if test="ext != null" >
+        ext,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        #{id,jdbcType=BIGINT},
+      </if>
+      <if test="refId != null" >
+        #{refId,jdbcType=VARCHAR},
+      </if>
+      <if test="taskType != null" >
+        #{taskType,jdbcType=TINYINT},
+      </if>
+      <if test="content != null" >
+        #{content,jdbcType=VARCHAR},
+      </if>
+      <if test="createdAt != null" >
+        #{createdAt,jdbcType=TIMESTAMP},
+      </if>
+      <if test="updatedAt != null" >
+        #{updatedAt,jdbcType=TIMESTAMP},
+      </if>
+      <if test="times != null" >
+        #{times,jdbcType=INTEGER},
+      </if>
+      <if test="isValid != null" >
+        #{isValid,jdbcType=TINYINT},
+      </if>
+      <if test="status != null" >
+        #{status,jdbcType=TINYINT},
+      </if>
+      <if test="ext != null" >
+        #{ext,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.lsh.payment.core.model.refund.RefundTask" >
+    update refund_task
+    <set >
+      <if test="refId != null" >
+        ref_id = #{refId,jdbcType=VARCHAR},
+      </if>
+      <if test="taskType != null" >
+        task_type = #{taskType,jdbcType=TINYINT},
+      </if>
+      <if test="content != null" >
+        content = #{content,jdbcType=VARCHAR},
+      </if>
+      <if test="createdAt != null" >
+        created_at = #{createdAt,jdbcType=TIMESTAMP},
+      </if>
+      <if test="updatedAt != null" >
+        updated_at = #{updatedAt,jdbcType=TIMESTAMP},
+      </if>
+      <if test="times != null" >
+        times = #{times,jdbcType=INTEGER},
+      </if>
+      <if test="isValid != null" >
+        is_valid = #{isValid,jdbcType=TINYINT},
+      </if>
+      <if test="status != null" >
+        status = #{status,jdbcType=TINYINT},
+      </if>
+      <if test="ext != null" >
+        ext = #{ext,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where id = #{id,jdbcType=BIGINT}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.lsh.payment.core.model.refund.RefundTask" >
+    update refund_task
+    set ref_id = #{refId,jdbcType=VARCHAR},
+      task_type = #{taskType,jdbcType=TINYINT},
+      content = #{content,jdbcType=VARCHAR},
+      created_at = #{createdAt,jdbcType=TIMESTAMP},
+      updated_at = #{updatedAt,jdbcType=TIMESTAMP},
+      times = #{times,jdbcType=INTEGER},
+      is_valid = #{isValid,jdbcType=TINYINT},
+      status = #{status,jdbcType=TINYINT},
+      ext = #{ext,jdbcType=VARCHAR}
+    where id = #{id,jdbcType=BIGINT}
+  </update>
+
+  <select id="selectByRecord" resultMap="BaseResultMap" parameterType="com.lsh.payment.core.model.refund.RefundTask" >
+    select
+    <include refid="Base_Column_List" />
+    from refund_task
+    <where>
+      <if test="refId != null" >
+        ref_id = #{refId,jdbcType=VARCHAR}
+      </if>
+      <if test="taskType != null" >
+        AND task_type = #{taskType,jdbcType=TINYINT}
+      </if>
+      <if test="content != null" >
+        AND content = #{content,jdbcType=VARCHAR}
+      </if>
+      <if test="createdAt != null" >
+        AND created_at = #{createdAt,jdbcType=TIMESTAMP}
+      </if>
+      <if test="times != null" >
+        AND times = #{times,jdbcType=INTEGER}
+      </if>
+      <if test="isValid != null" >
+        AND is_valid = #{isValid,jdbcType=TINYINT}
+      </if>
+      <if test="status != null" >
+        AND status = #{status,jdbcType=TINYINT}
+      </if>
+      <if test="ext != null" >
+        AND ext = #{ext,jdbcType=VARCHAR}
+      </if>
+
+    </where>
+  </select>
+
+  <update id="updateByRefId" parameterType="com.lsh.payment.core.model.refund.RefundTask" >
+    update refund_task
+    <set >
+      <if test="taskType != null" >
+        task_type = #{taskType,jdbcType=TINYINT},
+      </if>
+      <if test="content != null" >
+        content = #{content,jdbcType=VARCHAR},
+      </if>
+      <if test="createdAt != null" >
+        created_at = #{createdAt,jdbcType=TIMESTAMP},
+      </if>
+      <if test="updatedAt != null" >
+        updated_at = #{updatedAt,jdbcType=TIMESTAMP},
+      </if>
+      <if test="refundAt != null" >
+        refund_at = #{refundAt,jdbcType=TIMESTAMP},
+      </if>
+      <if test="times != null" >
+        times = #{times,jdbcType=INTEGER},
+      </if>
+      <if test="isValid != null" >
+        is_valid = #{isValid,jdbcType=TINYINT},
+      </if>
+      <if test="status != null" >
+        status = #{status,jdbcType=TINYINT},
+      </if>
+      <if test="ext != null" >
+        ext = #{ext,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where ref_id = #{refId,jdbcType=VARCHAR}
+  </update>
+</mapper>

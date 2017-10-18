@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xmlns:dubbo="http://code.alibabatech.com/schema/dubbo"
+       xmlns:util="http://www.springframework.org/schema/util"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-2.5.xsd
+	http://code.alibabatech.com/schema/dubbo http://code.alibabatech.com/schema/dubbo/dubbo.xsd
+	http://www.springframework.org/schema/util http://www.springframework.org/schema/util/spring-util.xsd">
+
+    <bean class="org.springframework.beans.factory.config.PropertyPlaceholderConfigurer">
+        <property name="locations">
+            <list>
+                <value>classpath:props/db.properties</value>
+                <value>classpath:props/provider.properties</value>
+                <value>classpath:props/redis.properties</value>
+            </list>
+        </property>
+    </bean>
+
+    <import resource="classpath*:spring/spring-pay-core.xml"/>
+
+    <!-- 应用信息配置，也可以用dubbo.properties配置 -->
+    <dubbo:application name="payment-provider" owner="lsh-payment" organization="lsh"/>
+
+    <!-- 注册中心配置 -->
+    <dubbo:registry address="zookeeper://${zookeeper.ip}"/>
+
+    <!-- 监控中心配置 -->
+    <dubbo:monitor protocol="registry"/>
+
+    <dubbo:protocol host="${dubbo.ip}" name="dubbo" port="${dubbo.port}" />
+
+    <!-- 服务提供者缺省值配置  -->
+    <dubbo:provider threads="500"  accepts="500" payload="104857600" timeout="10000" delay="-1" retries="0"/>
+
+    <!-- 服务提供者协议配置 -->
+    <dubbo:protocol name="dubbo" serialization="kryo" optimizer="com.lsh.payment.api.serialize.SerializationOptimizerImpl"/>
+    <dubbo:protocol name="rest"  port="${rest.port}" contextpath="pay" server="tomcat"
+                    extension="com.alibaba.dubbo.rpc.protocol.rest.support.LoggingFilter,
+                               com.lsh.payment.service.common.HttpRequestFilter,
+                               com.lsh.payment.service.common.BusinessExceptionMapper,
+                               com.lsh.payment.api.service.exception.BeanValidationMapper,
+                               com.lsh.payment.api.service.exception.SysExceptionMapper" />
+
+    <!-- 扫描注解包路径，多个包用逗号分隔，不填pacakge表示扫描当前ApplicationContext中所有的类 -->
+    <dubbo:annotation package="com.lsh.payment.service"/>
+
+</beans>

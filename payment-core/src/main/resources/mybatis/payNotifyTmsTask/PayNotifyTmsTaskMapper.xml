@@ -1,0 +1,157 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.lsh.payment.core.dao.payNotifyTmsTask.PayNotifyTmsTaskDao">
+    <resultMap id="BaseResultMap" type="com.lsh.payment.core.model.payNotifyTmsTask.PayNotifyTmsTask">
+        <id column="id" property="id" jdbcType="BIGINT"/>
+        <result column="trade_id" property="tradeId" jdbcType="VARCHAR"/>
+        <result column="method" property="method" jdbcType="TINYINT"/>
+        <result column="created_at" property="createdAt" jdbcType="TIMESTAMP"/>
+        <result column="notify_times" property="notifyTimes" jdbcType="TINYINT"/>
+        <result column="status" property="status" jdbcType="TINYINT"/>
+        <result column="updated_at" property="updatedAt" jdbcType="TIMESTAMP"/>
+        <result column="lsh_notify_url" property="lshNotifyUrl" jdbcType="VARCHAR"/>
+        <result column="receive_amount" property="receiveAmount" jdbcType="DECIMAL"/>
+        <result column="pay_payment_no" property="payPaymentNo" jdbcType="VARCHAR"/>
+        <result column="email_status" property="emailStatus" jdbcType="TINYINT"/>
+    </resultMap>
+    <sql id="Base_Column_List">
+    id, trade_id, method, created_at, notify_times, status, updated_at, lsh_notify_url, receive_amount, pay_payment_no, email_status
+    </sql>
+
+    <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Long">
+        select
+        <include refid="Base_Column_List"/>
+        from pay_notify_tms_task
+        where id = #{id,jdbcType=BIGINT}
+    </select>
+
+
+    <insert id="insertSelective" parameterType="com.lsh.payment.core.model.payNotifyTmsTask.PayNotifyTmsTask">
+        insert into pay_notify_tms_task
+        <trim prefix="(" suffix=")" suffixOverrides=",">
+            <if test="id != null">
+                id,
+            </if>
+            <if test="tradeId != null">
+                trade_id,
+            </if>
+            <if test="method != null">
+                method,
+            </if>
+            <if test="createdAt != null">
+                created_at,
+            </if>
+            <if test="notifyTimes != null">
+                notify_times,
+            </if>
+            <if test="status != null">
+                status,
+            </if>
+            <if test="updatedAt != null">
+                updated_at,
+            </if>
+            <if test="lshNotifyUrl != null">
+                lsh_notify_url,
+            </if>
+            <if test="receiveAmount != null">
+                receive_amount,
+            </if>
+            <if test="payPaymentNo != null">
+                pay_payment_no,
+            </if>
+        </trim>
+        <trim prefix="values (" suffix=")" suffixOverrides=",">
+            <if test="id != null">
+                #{id,jdbcType=BIGINT},
+            </if>
+            <if test="tradeId != null">
+                #{tradeId,jdbcType=VARCHAR},
+            </if>
+            <if test="method != null">
+                #{method,jdbcType=TINYINT},
+            </if>
+            <if test="createdAt != null">
+                #{createdAt,jdbcType=TIMESTAMP},
+            </if>
+            <if test="notifyTimes != null">
+                #{notifyTimes,jdbcType=TINYINT},
+            </if>
+            <if test="status != null">
+                #{status,jdbcType=TINYINT},
+            </if>
+            <if test="updatedAt != null">
+                #{updatedAt,jdbcType=TIMESTAMP},
+            </if>
+            <if test="lshNotifyUrl != null">
+                #{lshNotifyUrl,jdbcType=VARCHAR},
+            </if>
+            <if test="receiveAmount != null">
+                #{receiveAmount,jdbcType=DECIMAL},
+            </if>
+            <if test="payPaymentNo != null">
+                #{payPaymentNo,jdbcType=VARCHAR},
+            </if>
+        </trim>
+    </insert>
+    <update id="updateByPrimaryKeySelective"
+            parameterType="com.lsh.payment.core.model.payNotifyTmsTask.PayNotifyTmsTask">
+        update pay_notify_tms_task
+        <set>
+            <if test="tradeId != null">
+                trade_id = #{tradeId,jdbcType=VARCHAR},
+            </if>
+            <if test="method != null">
+                method = #{method,jdbcType=TINYINT},
+            </if>
+            <if test="createdAt != null">
+                created_at = #{createdAt,jdbcType=TIMESTAMP},
+            </if>
+            <if test="notifyTimes != null">
+                notify_times = #{notifyTimes,jdbcType=TINYINT},
+            </if>
+            <if test="status != null">
+                status = #{status,jdbcType=TINYINT},
+            </if>
+            <if test="updatedAt != null">
+                updated_at = #{updatedAt,jdbcType=TIMESTAMP},
+            </if>
+            <if test="lshNotifyUrl != null">
+                lsh_notify_url = #{lshNotifyUrl,jdbcType=VARCHAR},
+            </if>
+            <if test="receiveAmount != null">
+                receive_amount = #{receiveAmount,jdbcType=DECIMAL},
+            </if>
+            <if test="payPaymentNo != null">
+                pay_payment_no = #{payPaymentNo,jdbcType=VARCHAR},
+            </if>
+            <if test="emailStatus != null">
+                email_status = #{emailStatus,jdbcType=TINYINT},
+            </if>
+        </set>
+        where id = #{id,jdbcType=BIGINT}
+    </update>
+
+    <select id="selectTaskByStatus" resultMap="BaseResultMap" parameterType="map">
+        select
+        <include refid="Base_Column_List"/>
+        from pay_notify_tms_task
+        where
+        status = #{status,jdbcType=TINYINT}
+
+        <if test="emailStatus != null">
+          and  email_status = #{emailStatus,jdbcType=TINYINT}
+        </if>
+    </select>
+
+    <delete id="deleteByStatus" >
+        delete from pay_notify_tms_task
+        where status = 1
+    </delete>
+
+    <update id="updateEmailStatusById" parameterType="map">
+        update pay_notify_tms_task
+        set email_status = 1
+        where id in  ${ids}
+    </update>
+
+</mapper>

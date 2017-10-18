@@ -1,0 +1,95 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xmlns:context="http://www.springframework.org/schema/context"
+       xmlns:dubbo="http://code.alibabatech.com/schema/dubbo"
+       xmlns:dd-job="http://www.dangdang.com/schema/ddframe/job"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans
+                           http://www.springframework.org/schema/beans/spring-beans-3.2.xsd
+                           http://www.springframework.org/schema/context
+                           http://www.springframework.org/schema/context/spring-context-3.2.xsd
+                           http://code.alibabatech.com/schema/dubbo
+                           http://code.alibabatech.com/schema/dubbo/dubbo.xsd
+                           http://www.dangdang.com/schema/ddframe/job
+                           http://www.dangdang.com/schema/ddframe/job/job.xsd">
+
+    <context:property-placeholder location="classpath:props/*.properties"/>
+
+    <import resource="classpath*:spring/spring-pay-core.xml"/>
+
+    <context:component-scan base-package="com.lsh.payment.worker,com.lsh.payment.core" />
+
+    <dubbo:application name="payment-worker" owner="lsh-payment" organization="lsh" />
+
+    <bean id="payDataSource" class="com.jolbox.bonecp.BoneCPDataSource" destroy-method="close">
+        <property name="driverClass" value="${db.driver}"/>
+        <property name="jdbcUrl" value="${db.pay.url}"/>
+        <property name="username" value="${db.pay.username}"/>
+        <property name="password" value="${db.pay.password}"/>
+        <property name="idleConnectionTestPeriodInMinutes" value="${idleConnectionTestPeriodInMinutes}"/>
+        <property name="idleMaxAgeInMinutes" value="${idleMaxAgeInMinutes}"/>
+        <property name="maxConnectionsPerPartition" value="${maxConnectionsPerPartition}"/>
+        <property name="minConnectionsPerPartition" value="${minConnectionsPerPartition}"/>
+        <property name="partitionCount" value="${partitionCount}"/>
+        <property name="acquireIncrement" value="${acquireIncrement}"/>
+        <property name="statementsCacheSize" value="${statementsCacheSize}"/>
+        <property name="defaultAutoCommit" value="true"/>
+    </bean>
+
+    <bean id="payJdbcTemplate" class="org.springframework.jdbc.core.namedparam.NamedParameterJdbcTemplate">
+        <constructor-arg ref="payDataSource" />
+    </bean>
+
+    <bean id="regCenter" class="com.dangdang.ddframe.reg.zookeeper.ZookeeperRegistryCenter" init-method="init">
+        <constructor-arg>
+            <bean class="com.dangdang.ddframe.reg.zookeeper.ZookeeperConfiguration">
+                <property name="serverLists" value="${job.registry.address}" />
+                <property name="namespace" value="payment-worker" />
+                <property name="baseSleepTimeMilliseconds" value="1000" />
+                <property name="maxSleepTimeMilliseconds" value="3000" />
+                <property name="maxRetries" value="3" />
+            </bean>
+        </constructor-arg>
+    </bean>
+
+    <dd-job:dataflow registry-center-ref="regCenter"
+                     id="downLoadBillJop" class="com.lsh.payment.worker.task.DownLoadBillJop"
+                     cron="0 30 10 * * ?" sharding-total-count="4" sharding-item-parameters="0=WXH5,1=WXAPP,2=ALI,3=LAL"
+                     process-count-interval-seconds="10" concurrent-data-process-thread-count="4"/>
+
+    <dd-job:dataflow registry-center-ref="regCenter"
+                     id="downLoadBillJopForQf" class="com.lsh.payment.worker.task.DownLoadBillJop"
+                     cron="0 30 6 * * ?" sharding-total-count="2" sharding-item-parameters="0=WXQF,1=ALIQF"
+                     process-count-interval-seconds="10" concurrent-data-process-thread-count="2"/>
+
+    <dd-job:dataflow registry-center-ref="regCenter"
+                     id="downLoadBillJopForXY" class="com.lsh.payment.worker.task.DownLoadBillJop"
+                     cron="0 20 10 * * ?" sharding-total-count="2" sharding-item-parameters="0=WXXY,1=ALIXY"
+                     process-count-interval-seconds="10" concurrent-data-process-thread-count="2"/>
+
+    <dd-job:dataflow registry-center-ref="regCenter"
+                     id="downLoadBillJopForWxGroupon" class="com.lsh.payment.worker.task.DownLoadBillJop"
+                     cron="0 20 10 * * ?" sharding-total-count="1" sharding-item-parameters="0=WXH5GROUPON"
+                     process-count-interval-seconds="10" concurrent-data-process-thread-count="1"/>
+
+    <dd-job:simple registry-center-ref="regCenter"
+                   id="paymentMonitorJop" class="com.lsh.payment.worker.task.PaymentMonitorJop"
+                   cron="0 0/20 * * * ?" sharding-total-count="1" sharding-item-parameters="0=A" />
+
+    <dd-job:simple registry-center-ref="regCenter"
+                   id="channelNotifyJop" class="com.lsh.payment.worker.task.ChannelNotifyJop"
+                   cron="5 0/5 * * * ?" sharding-total-count="1" sharding-item-parameters="0=A" />
+
+    <dd-job:simple registry-center-ref="regCenter"
+                   id="paymentNotifyJop" class="com.lsh.payment.worker.task.PaymentNotifyJop"
+                   cron="10 0/3 * * * ?" sharding-total-count="1" sharding-item-parameters="0=A" />
+
+    <!--<dd-job:simple registry-center-ref="regCenter"-->
+                   <!--id="payDealHistoryJop" class="com.lsh.payment.worker.task.PayDealHistoryJop"-->
+                   <!--cron="0 10 16 * * ?" sharding-total-count="1" sharding-item-parameters="0=A" />-->
+
+    <dd-job:simple registry-center-ref="regCenter"
+                   id="refundQueryJop" class="com.lsh.payment.worker.task.RefundQueryJop"
+                   cron="0 0/5 * * * ?" sharding-total-count="1" sharding-item-parameters="0=A" />
+
+</beans>

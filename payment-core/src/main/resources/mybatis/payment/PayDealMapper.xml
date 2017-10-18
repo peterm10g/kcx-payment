@@ -1,0 +1,501 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.lsh.payment.core.dao.payment.PayDealDao">
+    <resultMap id="BaseResultMap" type="com.lsh.payment.core.model.payment.PayDeal">
+        <id column="id" property="id" jdbcType="BIGINT"/>
+        <result column="pay_id" property="payId" jdbcType="VARCHAR"/>
+        <result column="pay_payment_no" property="payPaymentNo" jdbcType="VARCHAR"/>
+        <result column="channel_transaction" property="channelTransaction" jdbcType="VARCHAR"/>
+        <result column="trade_id" property="tradeId" jdbcType="VARCHAR"/>
+        <result column="trade_module" property="tradeModule" jdbcType="VARCHAR"/>
+        <result column="pay_way" property="payWay" jdbcType="VARCHAR"/>
+        <result column="pay_type" property="payType" jdbcType="TINYINT"/>
+        <result column="pay_status" property="payStatus" jdbcType="TINYINT"/>
+        <result column="operate_status" property="operateStatus" jdbcType="TINYINT"/>
+        <result column="request_amount" property="requestAmount" jdbcType="DECIMAL"/>
+        <result column="receive_amount" property="receiveAmount" jdbcType="DECIMAL"/>
+        <result column="pay_channel" property="payChannel" jdbcType="VARCHAR"/>
+        <result column="module_type" property="moduleType" jdbcType="TINYINT"/>
+        <result column="system" property="system" jdbcType="TINYINT"/>
+        <result column="ext" property="ext" jdbcType="VARCHAR"/>
+        <result column="pay_time" property="payTime" jdbcType="TIMESTAMP"/>
+        <result column="query_time" property="queryTime" jdbcType="TIMESTAMP"/>
+        <result column="done_time" property="doneTime" jdbcType="TIMESTAMP"/>
+        <result column="created_at" property="createdAt" jdbcType="TIMESTAMP"/>
+        <result column="updated_at" property="updatedAt" jdbcType="TIMESTAMP"/>
+        <result column="operate_time" property="operateTime" jdbcType="INTEGER"/>
+        <result column="lsh_notify_url" property="lshNotifyUrl" jdbcType="VARCHAR"/>
+        <result column="trade_type" property="tradeType" jdbcType="TINYINT" />
+    </resultMap>
+    <sql id="Base_Column_List">
+    id, pay_id, pay_payment_no, channel_transaction, trade_id, trade_module, pay_way, 
+    pay_type, pay_status, operate_status, request_amount, receive_amount, pay_channel, 
+    module_type, system, ext, pay_time, query_time, done_time, created_at, updated_at, 
+    operate_time, lsh_notify_url, trade_type
+  </sql>
+    <select id="selectByParams" resultMap="BaseResultMap" parameterType="map">
+        select
+        <include refid="Base_Column_List"/>
+        from pay_deal
+        <where>
+            <if test="payId != null">
+                pay_id = #{payId,jdbcType=VARCHAR}
+            </if>
+            <if test="payPaymentNo != null">
+               AND pay_payment_no = #{payPaymentNo,jdbcType=VARCHAR}
+            </if>
+            <if test="channelTransaction != null">
+                AND channel_transaction = #{channelTransaction,jdbcType=VARCHAR}
+            </if>
+            <if test="tradeId != null">
+                AND  trade_id = #{tradeId,jdbcType=VARCHAR}
+            </if>
+            <if test="tradeModule != null">
+                AND  trade_module = #{tradeModule,jdbcType=VARCHAR}
+            </if>
+            <if test="payWay != null">
+                AND  pay_way = #{payWay,jdbcType=VARCHAR}
+            </if>
+            <if test="payType != null">
+                AND  pay_type = #{payType,jdbcType=TINYINT}
+            </if>
+            <if test="payStatus != null">
+                AND  pay_status = #{payStatus,jdbcType=TINYINT}
+            </if>
+            <if test="operateStatus != null">
+                AND  operate_status = #{operateStatus,jdbcType=TINYINT}
+            </if>
+            <if test="requestAmount != null">
+                AND  request_amount = #{requestAmount,jdbcType=DECIMAL}
+            </if>
+            <if test="receiveAmount != null">
+                AND receive_amount = #{receiveAmount,jdbcType=DECIMAL}
+            </if>
+            <if test="payChannel != null">
+                AND  pay_channel = #{payChannel,jdbcType=VARCHAR}
+            </if>
+            <if test="moduleType != null">
+                AND  module_type = #{moduleType,jdbcType=TINYINT}
+            </if>
+            <if test="system != null">
+                AND system = #{system,jdbcType=TINYINT}
+            </if>
+            <if test="lshNotifyUrl != null">
+                AND lsh_notify_url = #{lshNotifyUrl,jdbcType=VARCHAR}
+            </if>
+            <if test="tradeType != null">
+                AND trade_type = #{tradeType,jdbcType=TINYINT}
+            </if>
+        </where>
+    </select>
+
+    <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Long">
+        select
+        <include refid="Base_Column_List"/>
+        from pay_deal
+        where id = #{id,jdbcType=BIGINT}
+    </select>
+
+    <delete id="deleteByPrimaryKey" parameterType="java.lang.Long">
+    delete from pay_deal
+    where id = #{id,jdbcType=BIGINT}
+  </delete>
+    <insert id="insert" parameterType="com.lsh.payment.core.model.payment.PayDeal">
+    insert into pay_deal (id, pay_id, pay_payment_no, 
+      channel_transaction, trade_id, trade_module, 
+      pay_way, pay_type, pay_status, 
+      operate_status, request_amount, receive_amount, 
+      pay_channel, module_type, system, 
+      ext, pay_time, query_time, 
+      done_time, created_at, updated_at, 
+      operate_time, lsh_notify_url, trade_type)
+    values (#{id,jdbcType=BIGINT}, #{payId,jdbcType=VARCHAR}, #{payPaymentNo,jdbcType=VARCHAR}, 
+      #{channelTransaction,jdbcType=VARCHAR}, #{tradeId,jdbcType=VARCHAR}, #{tradeModule,jdbcType=VARCHAR}, 
+      #{payWay,jdbcType=VARCHAR}, #{payType,jdbcType=TINYINT}, #{payStatus,jdbcType=TINYINT}, 
+      #{operateStatus,jdbcType=TINYINT}, #{requestAmount,jdbcType=DECIMAL}, #{receiveAmount,jdbcType=DECIMAL}, 
+      #{payChannel,jdbcType=VARCHAR}, #{moduleType,jdbcType=TINYINT}, #{system,jdbcType=TINYINT}, 
+      #{ext,jdbcType=VARCHAR}, #{payTime,jdbcType=TIMESTAMP}, #{queryTime,jdbcType=TIMESTAMP}, 
+      #{doneTime,jdbcType=TIMESTAMP}, #{createdAt,jdbcType=TIMESTAMP}, #{updatedAt,jdbcType=TIMESTAMP}, 
+      #{operateTime,jdbcType=INTEGER},#{lshNotifyUrl,jdbcType=VARCHAR}, #{tradeType,jdbcType=TINYINT)
+  </insert>
+    <insert id="insertSelective" parameterType="com.lsh.payment.core.model.payment.PayDeal">
+        insert into pay_deal
+        <trim prefix="(" suffix=")" suffixOverrides=",">
+            <if test="id != null">
+                id,
+            </if>
+            <if test="payId != null">
+                pay_id,
+            </if>
+            <if test="payPaymentNo != null">
+                pay_payment_no,
+            </if>
+            <if test="channelTransaction != null">
+                channel_transaction,
+            </if>
+            <if test="tradeId != null">
+                trade_id,
+            </if>
+            <if test="tradeModule != null">
+                trade_module,
+            </if>
+            <if test="payWay != null">
+                pay_way,
+            </if>
+            <if test="payType != null">
+                pay_type,
+            </if>
+            <if test="payStatus != null">
+                pay_status,
+            </if>
+            <if test="operateStatus != null">
+                operate_status,
+            </if>
+            <if test="requestAmount != null">
+                request_amount,
+            </if>
+            <if test="receiveAmount != null">
+                receive_amount,
+            </if>
+            <if test="payChannel != null">
+                pay_channel,
+            </if>
+            <if test="moduleType != null">
+                module_type,
+            </if>
+            <if test="system != null">
+                system,
+            </if>
+            <if test="ext != null">
+                ext,
+            </if>
+            <if test="payTime != null">
+                pay_time,
+            </if>
+            <if test="queryTime != null">
+                query_time,
+            </if>
+            <if test="doneTime != null">
+                done_time,
+            </if>
+            <if test="createdAt != null">
+                created_at,
+            </if>
+            <if test="updatedAt != null">
+                updated_at,
+            </if>
+            <if test="operateTime != null">
+                operate_time,
+            </if>
+            <if test="lshNotifyUrl != null">
+                lsh_notify_url,
+            </if>
+            <if test="tradeType != null" >
+                trade_type,
+            </if>
+        </trim>
+        <trim prefix="values (" suffix=")" suffixOverrides=",">
+            <if test="id != null">
+                #{id,jdbcType=BIGINT},
+            </if>
+            <if test="payId != null">
+                #{payId,jdbcType=VARCHAR},
+            </if>
+            <if test="payPaymentNo != null">
+                #{payPaymentNo,jdbcType=VARCHAR},
+            </if>
+            <if test="channelTransaction != null">
+                #{channelTransaction,jdbcType=VARCHAR},
+            </if>
+            <if test="tradeId != null">
+                #{tradeId,jdbcType=VARCHAR},
+            </if>
+            <if test="tradeModule != null">
+                #{tradeModule,jdbcType=VARCHAR},
+            </if>
+            <if test="payWay != null">
+                #{payWay,jdbcType=VARCHAR},
+            </if>
+            <if test="payType != null">
+                #{payType,jdbcType=TINYINT},
+            </if>
+            <if test="payStatus != null">
+                #{payStatus,jdbcType=TINYINT},
+            </if>
+            <if test="operateStatus != null">
+                #{operateStatus,jdbcType=TINYINT},
+            </if>
+            <if test="requestAmount != null">
+                #{requestAmount,jdbcType=DECIMAL},
+            </if>
+            <if test="receiveAmount != null">
+                #{receiveAmount,jdbcType=DECIMAL},
+            </if>
+            <if test="payChannel != null">
+                #{payChannel,jdbcType=VARCHAR},
+            </if>
+            <if test="moduleType != null">
+                #{moduleType,jdbcType=TINYINT},
+            </if>
+            <if test="system != null">
+                #{system,jdbcType=TINYINT},
+            </if>
+            <if test="ext != null">
+                #{ext,jdbcType=VARCHAR},
+            </if>
+            <if test="payTime != null">
+                #{payTime,jdbcType=TIMESTAMP},
+            </if>
+            <if test="queryTime != null">
+                #{queryTime,jdbcType=TIMESTAMP},
+            </if>
+            <if test="doneTime != null">
+                #{doneTime,jdbcType=TIMESTAMP},
+            </if>
+            <if test="createdAt != null">
+                #{createdAt,jdbcType=TIMESTAMP},
+            </if>
+            <if test="updatedAt != null">
+                #{updatedAt,jdbcType=TIMESTAMP},
+            </if>
+            <if test="operateTime != null">
+                #{operateTime,jdbcType=INTEGER},
+            </if>
+            <if test="lshNotifyUrl != null">
+                #{lshNotifyUrl,jdbcType=VARCHAR},
+            </if>
+            <if test="tradeType != null" >
+                #{tradeType,jdbcType=TINYINT},
+            </if>
+        </trim>
+    </insert>
+    <update id="updateByPrimaryKeySelective" parameterType="com.lsh.payment.core.model.payment.PayDeal">
+        update pay_deal
+        <set>
+            <if test="payId != null">
+                pay_id = #{payId,jdbcType=VARCHAR},
+            </if>
+            <if test="payPaymentNo != null">
+                pay_payment_no = #{payPaymentNo,jdbcType=VARCHAR},
+            </if>
+            <if test="channelTransaction != null">
+                channel_transaction = #{channelTransaction,jdbcType=VARCHAR},
+            </if>
+            <if test="tradeId != null">
+                trade_id = #{tradeId,jdbcType=VARCHAR},
+            </if>
+            <if test="tradeModule != null">
+                trade_module = #{tradeModule,jdbcType=VARCHAR},
+            </if>
+            <if test="payWay != null">
+                pay_way = #{payWay,jdbcType=VARCHAR},
+            </if>
+            <if test="payType != null">
+                pay_type = #{payType,jdbcType=TINYINT},
+            </if>
+            <if test="payStatus != null">
+                pay_status = #{payStatus,jdbcType=TINYINT},
+            </if>
+            <if test="operateStatus != null">
+                operate_status = #{operateStatus,jdbcType=TINYINT},
+            </if>
+            <if test="requestAmount != null">
+                request_amount = #{requestAmount,jdbcType=DECIMAL},
+            </if>
+            <if test="receiveAmount != null">
+                receive_amount = #{receiveAmount,jdbcType=DECIMAL},
+            </if>
+            <if test="payChannel != null">
+                pay_channel = #{payChannel,jdbcType=VARCHAR},
+            </if>
+            <if test="moduleType != null">
+                module_type = #{moduleType,jdbcType=TINYINT},
+            </if>
+            <if test="system != null">
+                system = #{system,jdbcType=TINYINT},
+            </if>
+            <if test="ext != null">
+                ext = #{ext,jdbcType=VARCHAR},
+            </if>
+            <if test="payTime != null">
+                pay_time = #{payTime,jdbcType=TIMESTAMP},
+            </if>
+            <if test="queryTime != null">
+                query_time = #{queryTime,jdbcType=TIMESTAMP},
+            </if>
+            <if test="doneTime != null">
+                done_time = #{doneTime,jdbcType=TIMESTAMP},
+            </if>
+            <if test="createdAt != null">
+                created_at = #{createdAt,jdbcType=TIMESTAMP},
+            </if>
+            <if test="updatedAt != null">
+                updated_at = #{updatedAt,jdbcType=TIMESTAMP},
+            </if>
+            <if test="operateTime != null">
+                operate_time = #{operateTime,jdbcType=INTEGER},
+            </if>
+            <if test="lshNotifyUrl != null">
+                lsh_notify_url = #{lshNotifyUrl,jdbcType=VARCHAR},
+            </if>
+            <if test="tradeType != null" >
+                trade_type = #{tradeType,jdbcType=TINYINT},
+            </if>
+        </set>
+        where id = #{id,jdbcType=BIGINT}
+    </update>
+
+    <update id="updateByPayIdSelective" parameterType="com.lsh.payment.core.model.payment.PayDeal">
+        update pay_deal
+        <set>
+            <if test="payId != null">
+                pay_id = #{payId,jdbcType=VARCHAR},
+            </if>
+            <if test="payPaymentNo != null">
+                pay_payment_no = #{payPaymentNo,jdbcType=VARCHAR},
+            </if>
+            <if test="channelTransaction != null">
+                channel_transaction = #{channelTransaction,jdbcType=VARCHAR},
+            </if>
+            <if test="tradeId != null">
+                trade_id = #{tradeId,jdbcType=VARCHAR},
+            </if>
+            <if test="tradeModule != null">
+                trade_module = #{tradeModule,jdbcType=VARCHAR},
+            </if>
+            <if test="payWay != null">
+                pay_way = #{payWay,jdbcType=VARCHAR},
+            </if>
+            <if test="payType != null">
+                pay_type = #{payType,jdbcType=TINYINT},
+            </if>
+            <if test="payStatus != null">
+                pay_status = #{payStatus,jdbcType=TINYINT},
+            </if>
+            <if test="operateStatus != null">
+                operate_status = #{operateStatus,jdbcType=TINYINT},
+            </if>
+            <if test="requestAmount != null">
+                request_amount = #{requestAmount,jdbcType=DECIMAL},
+            </if>
+            <if test="receiveAmount != null">
+                receive_amount = #{receiveAmount,jdbcType=DECIMAL},
+            </if>
+            <if test="payChannel != null">
+                pay_channel = #{payChannel,jdbcType=VARCHAR},
+            </if>
+            <if test="moduleType != null">
+                module_type = #{moduleType,jdbcType=TINYINT},
+            </if>
+            <if test="system != null">
+                system = #{system,jdbcType=TINYINT},
+            </if>
+            <if test="ext != null">
+                ext = #{ext,jdbcType=VARCHAR},
+            </if>
+            <if test="payTime != null">
+                pay_time = #{payTime,jdbcType=TIMESTAMP},
+            </if>
+            <if test="queryTime != null">
+                query_time = #{queryTime,jdbcType=TIMESTAMP},
+            </if>
+            <if test="doneTime != null">
+                done_time = #{doneTime,jdbcType=TIMESTAMP},
+            </if>
+            <if test="createdAt != null">
+                created_at = #{createdAt,jdbcType=TIMESTAMP},
+            </if>
+            <if test="updatedAt != null">
+                updated_at = #{updatedAt,jdbcType=TIMESTAMP},
+            </if>
+            <if test="operateTime != null">
+                operate_time = #{operateTime,jdbcType=INTEGER},
+            </if>
+            <if test="lshNotifyUrl != null">
+                lsh_notify_url = #{lshNotifyUrl,jdbcType=VARCHAR},
+            </if>
+            <if test="tradeType != null" >
+                trade_type = #{tradeType,jdbcType=TINYINT},
+            </if>
+        </set>
+        where pay_id = #{payId,jdbcType=VARCHAR}
+    </update>
+    <update id="updateByPrimaryKey" parameterType="com.lsh.payment.core.model.payment.PayDeal">
+    update pay_deal
+    set pay_id = #{payId,jdbcType=VARCHAR},
+      pay_payment_no = #{payPaymentNo,jdbcType=VARCHAR},
+      channel_transaction = #{channelTransaction,jdbcType=VARCHAR},
+      trade_id = #{tradeId,jdbcType=VARCHAR},
+      trade_module = #{tradeModule,jdbcType=VARCHAR},
+      pay_way = #{payWay,jdbcType=VARCHAR},
+      pay_type = #{payType,jdbcType=TINYINT},
+      pay_status = #{payStatus,jdbcType=TINYINT},
+      operate_status = #{operateStatus,jdbcType=TINYINT},
+      request_amount = #{requestAmount,jdbcType=DECIMAL},
+      receive_amount = #{receiveAmount,jdbcType=DECIMAL},
+      pay_channel = #{payChannel,jdbcType=VARCHAR},
+      module_type = #{moduleType,jdbcType=TINYINT},
+      system = #{system,jdbcType=TINYINT},
+      ext = #{ext,jdbcType=VARCHAR},
+      pay_time = #{payTime,jdbcType=TIMESTAMP},
+      query_time = #{queryTime,jdbcType=TIMESTAMP},
+      done_time = #{doneTime,jdbcType=TIMESTAMP},
+      created_at = #{createdAt,jdbcType=TIMESTAMP},
+      updated_at = #{updatedAt,jdbcType=TIMESTAMP},
+      operate_time = #{operateTime,jdbcType=INTEGER},
+      lsh_notify_url = #{lshNotifyUrl,jdbcType=VARCHAR},
+      trade_type = #{tradeType,jdbcType=TINYINT}
+    where id = #{id,jdbcType=BIGINT}
+  </update>
+
+    <insert id="insertBatch" parameterType="ArrayList">
+        insert into pay_deal (
+        pay_id, pay_payment_no, channel_transaction, trade_id, trade_module, pay_way,
+        pay_type, pay_status, operate_status, request_amount, receive_amount, pay_channel,
+        module_type, system, ext, pay_time, done_time, created_at, updated_at, lsh_notify_url,
+        trade_type)
+        values
+        <foreach collection="list" item="pay" index="index" separator="," >
+              (#{pay.payId,jdbcType=VARCHAR},
+                #{pay.payPaymentNo,jdbcType=VARCHAR},
+                #{pay.channelTransaction,jdbcType=VARCHAR},
+                #{pay.tradeId,jdbcType=VARCHAR},
+                #{pay.tradeModule,jdbcType=VARCHAR},
+                #{pay.payWay,jdbcType=VARCHAR},
+                #{pay.payType,jdbcType=TINYINT},
+                #{pay.payStatus,jdbcType=TINYINT},
+                #{pay.operateStatus,jdbcType=TINYINT},
+                #{pay.requestAmount,jdbcType=DECIMAL},
+                #{pay.receiveAmount,jdbcType=DECIMAL},
+                #{pay.payChannel,jdbcType=VARCHAR},
+                #{pay.moduleType,jdbcType=TINYINT},
+                #{pay.system,jdbcType=TINYINT},
+                #{pay.ext,jdbcType=VARCHAR},
+                #{pay.payTime,jdbcType=TIMESTAMP},
+                #{pay.doneTime,jdbcType=TIMESTAMP},
+                #{pay.createdAt,jdbcType=TIMESTAMP},
+                #{pay.updatedAt,jdbcType=TIMESTAMP},
+                #{pay.lshNotifyUrl,jdbcType=VARCHAR},
+                #{tradeType,jdbcType=TINYINT})
+        </foreach>
+    </insert>
+
+    <select id="historyCount" parameterType="java.util.Date" resultType="java.lang.Integer">
+        select
+        count(*)
+        from
+        pay_deal
+
+        WHERE created_at &lt; #{createdAt,jdbcType=TIMESTAMP}
+
+    </select>
+
+    <insert id="insert2History" parameterType="java.util.HashMap" timeout="200000">
+        insert into pay_deal_history select * from pay_deal where created_at <![CDATA[<]]> #{date,jdbcType=TIMESTAMP} ORDER BY id limit #{start},#{pageSize};
+    </insert>
+
+    <delete id="delete2History" parameterType="java.util.HashMap" timeout="200000">
+        delete from pay_deal where created_at <![CDATA[<]]> #{date,jdbcType=TIMESTAMP};
+    </delete>
+
+</mapper>

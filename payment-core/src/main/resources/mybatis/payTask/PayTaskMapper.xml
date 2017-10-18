@@ -1,0 +1,224 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.lsh.payment.core.dao.payTask.PayTaskDao">
+    <resultMap id="BaseResultMap" type="com.lsh.payment.core.model.PayTask.PayTask">
+        <id column="id" property="id" jdbcType="BIGINT"/>
+        <result column="pay_id" property="payId" jdbcType="VARCHAR"/>
+        <result column="pay_payment_no" property="payPaymentNo" jdbcType="VARCHAR"/>
+        <result column="created_at" property="createdAt" jdbcType="TIMESTAMP"/>
+        <result column="channel_transaction" property="channelTransaction" jdbcType="VARCHAR"/>
+        <result column="trade_id" property="tradeId" jdbcType="VARCHAR"/>
+        <result column="trade_module" property="tradeModule" jdbcType="VARCHAR"/>
+        <result column="updated_at" property="updatedAt" jdbcType="TIMESTAMP"/>
+        <result column="query_times" property="queryTimes" jdbcType="TINYINT"/>
+        <result column="email_status" property="emailStatus" jdbcType="TINYINT"/>
+    </resultMap>
+    <sql id="Base_Column_List">
+    id, pay_id, pay_payment_no, created_at, channel_transaction, trade_id, trade_module, 
+    updated_at, query_times, email_status
+  </sql>
+    <select id="selectByParaMap" resultMap="BaseResultMap" parameterType="map">
+        select
+        <include refid="Base_Column_List"/>
+        from pay_task
+        <where>
+
+            <if test="payPaymentNo != null">
+                pay_payment_no = #{payPaymentNo,jdbcType=VARCHAR}
+            </if>
+
+            <if test="tradeId != null">
+                AND trade_id = #{tradeId,jdbcType=VARCHAR}
+            </if>
+
+            <if test="payId != null">
+                AND pay_id = #{payId,jdbcType=VARCHAR}
+            </if>
+
+            <if test="createdAt != null">
+                AND created_at &lt;= #{createdAt,jdbcType=TIMESTAMP}
+            </if>
+
+            <if test="queryTimes != null">
+                AND query_times &lt; #{queryTimes,jdbcType=TINYINT}
+            </if>
+
+            <if test="maxQueryTimes != null">
+                AND query_times >= #{maxQueryTimes,jdbcType=TINYINT}
+            </if>
+
+            <if test="emailStatus != null">
+                AND email_status = #{emailStatus,jdbcType=TINYINT}
+            </if>
+
+        </where>
+    </select>
+
+    <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="map">
+        select
+        <include refid="Base_Column_List"/>
+        from pay_task
+        where id = #{id,jdbcType=BIGINT}
+    </select>
+
+    <delete id="deleteByPayId" parameterType="java.lang.String">
+    delete from pay_task
+    where pay_id = #{payId,jdbcType=VARCHAR}
+  </delete>
+    <delete id="deleteByPrimaryKey" parameterType="java.lang.Long">
+    delete from pay_task
+    where id = #{id,jdbcType=BIGINT}
+  </delete>
+    <insert id="insert" parameterType="com.lsh.payment.core.model.PayTask.PayTask">
+    insert into pay_task (id, pay_id, pay_payment_no, 
+      created_at, channel_transaction, trade_id, 
+      trade_module, updated_at)
+    values (#{id,jdbcType=BIGINT}, #{payId,jdbcType=VARCHAR}, #{payPaymentNo,jdbcType=VARCHAR}, 
+      #{createdAt,jdbcType=TIMESTAMP}, #{channelTransaction,jdbcType=VARCHAR}, #{tradeId,jdbcType=VARCHAR}, 
+      #{tradeModule,jdbcType=VARCHAR}, #{updatedAt,jdbcType=TIMESTAMP})
+  </insert>
+    <insert id="insertSelective" parameterType="com.lsh.payment.core.model.PayTask.PayTask">
+        insert into pay_task
+        <trim prefix="(" suffix=")" suffixOverrides=",">
+            <if test="id != null">
+                id,
+            </if>
+            <if test="payId != null">
+                pay_id,
+            </if>
+            <if test="payPaymentNo != null">
+                pay_payment_no,
+            </if>
+            <if test="createdAt != null">
+                created_at,
+            </if>
+            <if test="channelTransaction != null">
+                channel_transaction,
+            </if>
+            <if test="tradeId != null">
+                trade_id,
+            </if>
+            <if test="tradeModule != null">
+                trade_module,
+            </if>
+            <if test="updatedAt != null">
+                updated_at,
+            </if>
+        </trim>
+        <trim prefix="values (" suffix=")" suffixOverrides=",">
+            <if test="id != null">
+                #{id,jdbcType=BIGINT},
+            </if>
+            <if test="payId != null">
+                #{payId,jdbcType=VARCHAR},
+            </if>
+            <if test="payPaymentNo != null">
+                #{payPaymentNo,jdbcType=VARCHAR},
+            </if>
+            <if test="createdAt != null">
+                #{createdAt,jdbcType=TIMESTAMP},
+            </if>
+            <if test="channelTransaction != null">
+                #{channelTransaction,jdbcType=VARCHAR},
+            </if>
+            <if test="tradeId != null">
+                #{tradeId,jdbcType=VARCHAR},
+            </if>
+            <if test="tradeModule != null">
+                #{tradeModule,jdbcType=VARCHAR},
+            </if>
+            <if test="updatedAt != null">
+                #{updatedAt,jdbcType=TIMESTAMP},
+            </if>
+        </trim>
+    </insert>
+    <update id="updateByPrimaryKeySelective" parameterType="com.lsh.payment.core.model.PayTask.PayTask">
+        update pay_task
+        <set>
+            <if test="payId != null">
+                pay_id = #{payId,jdbcType=VARCHAR},
+            </if>
+            <if test="payPaymentNo != null">
+                pay_payment_no = #{payPaymentNo,jdbcType=VARCHAR},
+            </if>
+            <if test="createdAt != null">
+                created_at = #{createdAt,jdbcType=TIMESTAMP},
+            </if>
+            <if test="channelTransaction != null">
+                channel_transaction = #{channelTransaction,jdbcType=VARCHAR},
+            </if>
+            <if test="tradeId != null">
+                trade_id = #{tradeId,jdbcType=VARCHAR},
+            </if>
+            <if test="tradeModule != null">
+                trade_module = #{tradeModule,jdbcType=VARCHAR},
+            </if>
+            <if test="updatedAt != null">
+                updated_at = #{updatedAt,jdbcType=TIMESTAMP},
+            </if>
+            <if test="queryTimes != null">
+                query_times = #{queryTimes,jdbcType=TINYINT},
+            </if>
+            <if test="emailStatus != null">
+                email_status = #{emailStatus,jdbcType=TINYINT},
+            </if>
+        </set>
+        where id = #{id,jdbcType=BIGINT}
+    </update>
+    <update id="updateByPrimaryKey" parameterType="com.lsh.payment.core.model.PayTask.PayTask">
+    update pay_task
+    set pay_id = #{payId,jdbcType=VARCHAR},
+      pay_payment_no = #{payPaymentNo,jdbcType=VARCHAR},
+      created_at = #{createdAt,jdbcType=TIMESTAMP},
+      channel_transaction = #{channelTransaction,jdbcType=VARCHAR},
+      trade_id = #{tradeId,jdbcType=VARCHAR},
+      trade_module = #{tradeModule,jdbcType=VARCHAR},
+      updated_at = #{updatedAt,jdbcType=TIMESTAMP},
+      query_times = #{queryTimes,jdbcType=TINYINT}
+    where id = #{id,jdbcType=BIGINT}
+  </update>
+
+    <update id="updateEmailStatusById" parameterType="java.lang.String">
+        update pay_task
+        set email_status = 1
+        where id in  ${ids}
+    </update>
+
+
+    <update id="updateByPayIdSelective" parameterType="com.lsh.payment.core.model.PayTask.PayTask">
+        update pay_task
+        <set>
+            <if test="payPaymentNo != null">
+                pay_payment_no = #{payPaymentNo,jdbcType=VARCHAR},
+            </if>
+            <if test="createdAt != null">
+                created_at = #{createdAt,jdbcType=TIMESTAMP},
+            </if>
+            <if test="channelTransaction != null">
+                channel_transaction = #{channelTransaction,jdbcType=VARCHAR},
+            </if>
+            <if test="tradeId != null">
+                trade_id = #{tradeId,jdbcType=VARCHAR},
+            </if>
+            <if test="tradeModule != null">
+                trade_module = #{tradeModule,jdbcType=VARCHAR},
+            </if>
+            <if test="updatedAt != null">
+                updated_at = #{updatedAt,jdbcType=TIMESTAMP},
+            </if>
+            <if test="queryTimes != null">
+                query_times = #{queryTimes,jdbcType=TINYINT},
+            </if>
+        </set>
+        where pay_id = #{payId,jdbcType=VARCHAR}
+    </update>
+
+    <update id="addQueryTimesByPayId" parameterType="com.lsh.payment.core.model.PayTask.PayTask">
+        update pay_task
+        <set>
+            query_times = query_times + 1,
+        </set>
+        where pay_id = #{payId,jdbcType=VARCHAR}
+        and query_times &lt; 10
+    </update>
+</mapper>

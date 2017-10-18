@@ -1,0 +1,347 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.lsh.payment.core.dao.refund.PayRefundDao" >
+  <resultMap id="BaseResultMap" type="com.lsh.payment.core.model.refund.PayRefund" >
+    <id column="id" property="id" jdbcType="BIGINT" />
+    <result column="payment_refund_no" property="paymentRefundNo" jdbcType="VARCHAR" />
+    <result column="refund_trade_id" property="refundTradeId" jdbcType="VARCHAR" />
+    <result column="pay_payment_no" property="payPaymentNo" jdbcType="VARCHAR" />
+    <result column="channel_refund_id" property="channelRefundId" jdbcType="VARCHAR" />
+    <result column="refund_amount" property="refundAmount" jdbcType="DECIMAL" />
+    <result column="refund_channel" property="refundChannel" jdbcType="VARCHAR" />
+    <result column="amount_type" property="amountType" jdbcType="VARCHAR" />
+    <result column="refund_recv_accout" property="refundRecvAccout" jdbcType="VARCHAR" />
+    <result column="create_at" property="createAt" jdbcType="TIMESTAMP" />
+    <result column="update_at" property="updateAt" jdbcType="TIMESTAMP" />
+    <result column="refund_at" property="refundAt" jdbcType="TIMESTAMP" />
+    <result column="is_valid" property="isValid" jdbcType="TINYINT" />
+    <result column="refund_status" property="refundStatus" jdbcType="TINYINT" />
+    <result column="call_system" property="callSystem" jdbcType="TINYINT" />
+    <result column="ext" property="ext" jdbcType="VARCHAR" />
+    <result column="refund_notify_url" property="refundNotifyUrl" jdbcType="VARCHAR" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    id, payment_refund_no, refund_trade_id, pay_payment_no, channel_refund_id, refund_amount, refund_channel,
+    amount_type, refund_recv_accout, create_at, update_at, refund_at, is_valid, refund_status, 
+    call_system, ext, refund_notify_url
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Long" >
+    select 
+    <include refid="Base_Column_List" />
+    from pay_refund
+    where id = #{id,jdbcType=BIGINT}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Long" >
+    delete from pay_refund
+    where id = #{id,jdbcType=BIGINT}
+  </delete>
+  <insert id="insert" parameterType="com.lsh.payment.core.model.refund.PayRefund" >
+    insert into pay_refund (id, payment_refund_no,refund_trade_id, pay_payment_no,
+      channel_refund_id, refund_amount, refund_channel, 
+      amount_type, refund_recv_accout, create_at, 
+      update_at, refund_at, is_valid, 
+      refund_status, call_system, ext, 
+      refund_notify_url)
+    values (#{id,jdbcType=BIGINT}, #{paymentRefundNo,jdbcType=VARCHAR},#{refundTradeId,jdbcType=VARCHAR}, #{payPaymentNo,jdbcType=VARCHAR},
+      #{channelRefundId,jdbcType=VARCHAR}, #{refundAmount,jdbcType=DECIMAL}, #{refundChannel,jdbcType=VARCHAR}, 
+      #{amountType,jdbcType=VARCHAR}, #{refundRecvAccout,jdbcType=VARCHAR}, #{createAt,jdbcType=TIMESTAMP}, 
+      #{updateAt,jdbcType=TIMESTAMP}, #{refundAt,jdbcType=TIMESTAMP}, #{isValid,jdbcType=TINYINT}, 
+      #{refundStatus,jdbcType=TINYINT}, #{callSystem,jdbcType=TINYINT}, #{ext,jdbcType=VARCHAR}, 
+      #{refundNotifyUrl,jdbcType=VARCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="com.lsh.payment.core.model.refund.PayRefund" >
+    insert into pay_refund
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        id,
+      </if>
+      <if test="paymentRefundNo != null" >
+        payment_refund_no,
+      </if>
+      <if test="refundTradeId != null" >
+        refund_trade_id,
+      </if>
+      <if test="payPaymentNo != null" >
+        pay_payment_no,
+      </if>
+      <if test="channelRefundId != null" >
+        channel_refund_id,
+      </if>
+      <if test="refundAmount != null" >
+        refund_amount,
+      </if>
+      <if test="refundChannel != null" >
+        refund_channel,
+      </if>
+      <if test="amountType != null" >
+        amount_type,
+      </if>
+      <if test="refundRecvAccout != null" >
+        refund_recv_accout,
+      </if>
+      <if test="createAt != null" >
+        create_at,
+      </if>
+      <if test="updateAt != null" >
+        update_at,
+      </if>
+      <if test="refundAt != null" >
+        refund_at,
+      </if>
+      <if test="isValid != null" >
+        is_valid,
+      </if>
+      <if test="refundStatus != null" >
+        refund_status,
+      </if>
+      <if test="callSystem != null" >
+        call_system,
+      </if>
+      <if test="ext != null" >
+        ext,
+      </if>
+      <if test="refundNotifyUrl != null" >
+        refund_notify_url,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        #{id,jdbcType=BIGINT},
+      </if>
+      <if test="paymentRefundNo != null" >
+        #{paymentRefundNo,jdbcType=VARCHAR},
+      </if>
+      <if test="refundTradeId != null" >
+        #{refundTradeId,jdbcType=VARCHAR},
+      </if>
+      <if test="payPaymentNo != null" >
+        #{payPaymentNo,jdbcType=VARCHAR},
+      </if>
+      <if test="channelRefundId != null" >
+        #{channelRefundId,jdbcType=VARCHAR},
+      </if>
+      <if test="refundAmount != null" >
+        #{refundAmount,jdbcType=DECIMAL},
+      </if>
+      <if test="refundChannel != null" >
+        #{refundChannel,jdbcType=VARCHAR},
+      </if>
+      <if test="amountType != null" >
+        #{amountType,jdbcType=VARCHAR},
+      </if>
+      <if test="refundRecvAccout != null" >
+        #{refundRecvAccout,jdbcType=VARCHAR},
+      </if>
+      <if test="createAt != null" >
+        #{createAt,jdbcType=TIMESTAMP},
+      </if>
+      <if test="updateAt != null" >
+        #{updateAt,jdbcType=TIMESTAMP},
+      </if>
+      <if test="refundAt != null" >
+        #{refundAt,jdbcType=TIMESTAMP},
+      </if>
+      <if test="isValid != null" >
+        #{isValid,jdbcType=TINYINT},
+      </if>
+      <if test="refundStatus != null" >
+        #{refundStatus,jdbcType=TINYINT},
+      </if>
+      <if test="callSystem != null" >
+        #{callSystem,jdbcType=TINYINT},
+      </if>
+      <if test="ext != null" >
+        #{ext,jdbcType=VARCHAR},
+      </if>
+      <if test="refundNotifyUrl != null" >
+        #{refundNotifyUrl,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.lsh.payment.core.model.refund.PayRefund" >
+    update pay_refund
+    <set >
+      <if test="paymentRefundNo != null" >
+        payment_refund_no = #{paymentRefundNo,jdbcType=VARCHAR},
+      </if>
+      <if test="refundTradeId != null" >
+        refund_trade_id = #{refundTradeId,jdbcType=VARCHAR},
+      </if>
+      <if test="payPaymentNo != null" >
+        pay_payment_no = #{payPaymentNo,jdbcType=VARCHAR},
+      </if>
+      <if test="channelRefundId != null" >
+        channel_refund_id = #{channelRefundId,jdbcType=VARCHAR},
+      </if>
+      <if test="refundAmount != null" >
+        refund_amount = #{refundAmount,jdbcType=DECIMAL},
+      </if>
+      <if test="refundChannel != null" >
+        refund_channel = #{refundChannel,jdbcType=VARCHAR},
+      </if>
+      <if test="amountType != null" >
+        amount_type = #{amountType,jdbcType=VARCHAR},
+      </if>
+      <if test="refundRecvAccout != null" >
+        refund_recv_accout = #{refundRecvAccout,jdbcType=VARCHAR},
+      </if>
+      <if test="createAt != null" >
+        create_at = #{createAt,jdbcType=TIMESTAMP},
+      </if>
+      <if test="updateAt != null" >
+        update_at = #{updateAt,jdbcType=TIMESTAMP},
+      </if>
+      <if test="refundAt != null" >
+        refund_at = #{refundAt,jdbcType=TIMESTAMP},
+      </if>
+      <if test="isValid != null" >
+        is_valid = #{isValid,jdbcType=TINYINT},
+      </if>
+      <if test="refundStatus != null" >
+        refund_status = #{refundStatus,jdbcType=TINYINT},
+      </if>
+      <if test="callSystem != null" >
+        call_system = #{callSystem,jdbcType=TINYINT},
+      </if>
+      <if test="ext != null" >
+        ext = #{ext,jdbcType=VARCHAR},
+      </if>
+      <if test="refundNotifyUrl != null" >
+        refund_notify_url = #{refundNotifyUrl,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where id = #{id,jdbcType=BIGINT}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.lsh.payment.core.model.refund.PayRefund" >
+    update pay_refund
+    set payment_refund_no = #{paymentRefundNo,jdbcType=VARCHAR},
+      refund_trade_id = #{refundTradeId,jdbcType=VARCHAR},
+      pay_payment_no = #{payPaymentNo,jdbcType=VARCHAR},
+      channel_refund_id = #{channelRefundId,jdbcType=VARCHAR},
+      refund_amount = #{refundAmount,jdbcType=DECIMAL},
+      refund_channel = #{refundChannel,jdbcType=VARCHAR},
+      amount_type = #{amountType,jdbcType=VARCHAR},
+      refund_recv_accout = #{refundRecvAccout,jdbcType=VARCHAR},
+      create_at = #{createAt,jdbcType=TIMESTAMP},
+      update_at = #{updateAt,jdbcType=TIMESTAMP},
+      refund_at = #{refundAt,jdbcType=TIMESTAMP},
+      is_valid = #{isValid,jdbcType=TINYINT},
+      refund_status = #{refundStatus,jdbcType=TINYINT},
+      call_system = #{callSystem,jdbcType=TINYINT},
+      ext = #{ext,jdbcType=VARCHAR},
+      refund_notify_url = #{refundNotifyUrl,jdbcType=VARCHAR}
+    where id = #{id,jdbcType=BIGINT}
+  </update>
+  <update id="updateByPayRefundIdSelective" parameterType="com.lsh.payment.core.model.refund.PayRefund" >
+    update pay_refund
+    <set >
+      <if test="paymentRefundNo != null" >
+        payment_refund_no = #{paymentRefundNo,jdbcType=VARCHAR},
+      </if>
+      <if test="refundTradeId != null" >
+        refund_trade_id = #{refundTradeId,jdbcType=VARCHAR},
+      </if>
+      <if test="payPaymentNo != null" >
+        pay_payment_no = #{payPaymentNo,jdbcType=VARCHAR},
+      </if>
+      <if test="channelRefundId != null" >
+        channel_refund_id = #{channelRefundId,jdbcType=VARCHAR},
+      </if>
+      <if test="refundAmount != null" >
+        refund_amount = #{refundAmount,jdbcType=DECIMAL},
+      </if>
+      <if test="refundChannel != null" >
+        refund_channel = #{refundChannel,jdbcType=VARCHAR},
+      </if>
+      <if test="amountType != null" >
+        amount_type = #{amountType,jdbcType=VARCHAR},
+      </if>
+      <if test="refundRecvAccout != null" >
+        refund_recv_accout = #{refundRecvAccout,jdbcType=VARCHAR},
+      </if>
+      <if test="createAt != null" >
+        create_at = #{createAt,jdbcType=TIMESTAMP},
+      </if>
+      <if test="updateAt != null" >
+        update_at = #{updateAt,jdbcType=TIMESTAMP},
+      </if>
+      <if test="refundAt != null" >
+        refund_at = #{refundAt,jdbcType=TIMESTAMP},
+      </if>
+      <if test="isValid != null" >
+        is_valid = #{isValid,jdbcType=TINYINT},
+      </if>
+      <if test="refundStatus != null" >
+        refund_status = #{refundStatus,jdbcType=TINYINT},
+      </if>
+      <if test="callSystem != null" >
+        call_system = #{callSystem,jdbcType=TINYINT},
+      </if>
+      <if test="ext != null" >
+        ext = #{ext,jdbcType=VARCHAR},
+      </if>
+      <if test="refundNotifyUrl != null" >
+        refund_notify_url = #{refundNotifyUrl,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where payment_refund_no = #{paymentRefundNo,jdbcType=VARCHAR}
+    AND refund_status != 3
+  </update>
+
+  <select id="selectByParams" resultMap="BaseResultMap" parameterType="map" >
+    select
+    <include refid="Base_Column_List" />
+    from pay_refund
+    <where>
+      <if test="paymentRefundNo != null" >
+        payment_refund_no = #{paymentRefundNo,jdbcType=VARCHAR}
+      </if>
+      <if test="refundTradeId != null" >
+        AND refund_trade_id = #{refundTradeId,jdbcType=VARCHAR}
+      </if>
+      <if test="payPaymentNo != null" >
+        AND pay_payment_no = #{payPaymentNo,jdbcType=VARCHAR}
+      </if>
+      <if test="channelRefundId != null" >
+        AND channel_refund_id = #{channelRefundId,jdbcType=VARCHAR}
+      </if>
+      <if test="refundAmount != null" >
+        AND refund_amount = #{refundAmount,jdbcType=DECIMAL}
+      </if>
+      <if test="refundChannel != null" >
+        AND refund_channel = #{refundChannel,jdbcType=VARCHAR}
+      </if>
+      <if test="amountType != null" >
+        AND amount_type = #{amountType,jdbcType=VARCHAR}
+      </if>
+      <if test="refundRecvAccout != null" >
+        AND refund_recv_accout = #{refundRecvAccout,jdbcType=VARCHAR}
+      </if>
+      <if test="createAt != null" >
+        AND create_at = #{createAt,jdbcType=TIMESTAMP}
+      </if>
+      <if test="updateAt != null" >
+        AND update_at = #{updateAt,jdbcType=TIMESTAMP}
+      </if>
+      <if test="refundAt != null" >
+        AND refund_at = #{refundAt,jdbcType=TIMESTAMP}
+      </if>
+      <if test="isValid != null" >
+        AND is_valid = #{isValid,jdbcType=TINYINT}
+      </if>
+      <if test="refundStatus != null" >
+        AND refund_status = #{refundStatus,jdbcType=TINYINT}
+      </if>
+      <if test="callSystem != null" >
+        AND call_system = #{callSystem,jdbcType=TINYINT}
+      </if>
+      <if test="ext != null" >
+        AND ext = #{ext,jdbcType=VARCHAR}
+      </if>
+      <if test="refundNotifyUrl != null" >
+        AND refund_notify_url = #{refundNotifyUrl,jdbcType=VARCHAR}
+      </if>
+    </where>
+  </select>
+
+</mapper>
