@@ -57,8 +57,6 @@ public class WxPayRestService implements IWeChatPayRestService {
 
     private static Map<String,String> mac2keyMap;
 
-
-
     @Autowired
     private WxNotifyServiceImpl wxNotifyServiceImpl;
 
