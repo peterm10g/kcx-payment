@@ -34,14 +34,14 @@ public class WxPayConfig {
     public static final String NOTIFY_URL_APP = PropertiesUtil.getValue("wx.notify.url");
     public static final String TRADE_TYPE_APP = "APP";
 
-    public static final String APPID_APP = "wx8ed7a894512766dd";
-    public static final String MCHID_APP = "1288575201";
-    public static final String KEY_APP = "Lianshangyougong123weixinzhifu16";
+    public static final String APPID_APP = "32";
+    public static final String MCHID_APP = "323";
+    public static final String KEY_APP = "323";
 
     //qf
-    public static final String APPID_NATIVE = "wxa25e306362e511c6";
-    public static final String MCHID_NATIVE = "10028073";//"1380355902";
-    public static final String KEY_NATIVE = "50eb2fa9327fc9e2a3c91876bfab14a1";
+    public static final String APPID_NATIVE = "323";
+    public static final String MCHID_NATIVE = "323";//"323";
+    public static final String KEY_NATIVE = "232";
 
 
     public static final String IP = "115.182.215.48";

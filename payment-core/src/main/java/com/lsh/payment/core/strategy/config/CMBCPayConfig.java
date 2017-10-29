@@ -10,9 +10,9 @@ import org.springframework.stereotype.Component;
 @Component
 public class CMBCPayConfig {
 
-    public static final String MAC_ID = "999102115200003";
+    public static final String MAC_ID = "32323";
     //后台服务通信密钥
-    public static final String KEY = "611d28c87f1d4c61ab0c5042071effc3";
+    public static final String KEY = "3232";
     //支付
     public static final String PAY_API = "http://140.206.72.238:10011/scanpay-api/api";
     //查询

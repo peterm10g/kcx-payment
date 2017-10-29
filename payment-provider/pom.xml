@@ -114,17 +114,17 @@
                 <dubbo.ip>127.0.0.1</dubbo.ip>
                 <dubbo.port>8082</dubbo.port>
                 <rest.port>8888</rest.port>
-                <qf.app.code>96E6D52D091B4807B34D09A5E1228E2F</qf.app.code>
-                <qf.server_code>A109D6CA19984C5A8FAD32D6E2C2A814</qf.server_code>
-                <qf.api>https://openapi-test.qfpay.com</qf.api>
+                <qf.app.code>654</qf.app.code>
+                <qf.server_code>uhg</qf.server_code>
+                <qf.api>api</qf.api>
                 <wx.appid>wxa25e306362e511c6</wx.appid>
                 <wx.mchid>1297999701</wx.mchid>
                 <wx.key>d4627dde2149d77dc17d649495aeb892</wx.key>
                 <wx.appsecret>61d9fa305ed83d4a640d31068876194b</wx.appsecret>
-                <wx.appid.g>wxa25e306362e511c6</wx.appid.g>
-                <wx.mchid.g>1297999701</wx.mchid.g>
-                <wx.key.g>d4627dde2149d77dc17d649495aeb892</wx.key.g>
-                <wx.appsecret.g>61d9fa305ed83d4a640d31068876194b</wx.appsecret.g>
+                <wx.appid.g>111</wx.appid.g>
+                <wx.mchid.g>1111</wx.mchid.g>
+                <wx.key.g>1111</wx.key.g>
+                <wx.appsecret.g>1111</wx.appsecret.g>
                 <wx.perm.g>/Users/peter/groupon/cert_test/apiclient_cert.p12</wx.perm.g>
                 <wx.notify.url>http://testpay.wmdev2.lsh123.com/pay/wxpay/notify</wx.notify.url>
                 <ali.notify.url>http://testpay.wmdev2.lsh123.com/pay/alipay/notify</ali.notify.url>
@@ -151,17 +151,17 @@
                 <dubbo.ip>127.0.0.1</dubbo.ip>
                 <dubbo.port>8078</dubbo.port>
                 <rest.port>8886</rest.port>
-                <qf.app.code>96E6D52D091B4807B34D09A5E1228E2F</qf.app.code>
-                <qf.server_code>A109D6CA19984C5A8FAD32D6E2C2A814</qf.server_code>
-                <qf.api>https://openapi-test.qfpay.com</qf.api>
-                <wx.appid>wxa25e306362e511c6</wx.appid>
-                <wx.mchid>1297999701</wx.mchid>
-                <wx.key>d4627dde2149d77dc17d649495aeb892</wx.key>
-                <wx.appsecret>61d9fa305ed83d4a640d31068876194b</wx.appsecret>
-                <wx.appid.g>wxa25e306362e511c6</wx.appid.g>
-                <wx.mchid.g>1297999701</wx.mchid.g>
-                <wx.key.g>d4627dde2149d77dc17d649495aeb892</wx.key.g>
-                <wx.appsecret.g>61d9fa305ed83d4a640d31068876194b</wx.appsecret.g>
+                <qf.app.code>001</qf.app.code>
+                <qf.server_code>001</qf.server_code>
+                <qf.api>0001</qf.api>
+                <wx.appid>111</wx.appid>
+                <wx.mchid>111</wx.mchid>
+                <wx.key>1111</wx.key>
+                <wx.appsecret>1111</wx.appsecret>
+                <wx.appid.g>111</wx.appid.g>
+                <wx.mchid.g>1111</wx.mchid.g>
+                <wx.key.g>11111</wx.key.g>
+                <wx.appsecret.g>11111</wx.appsecret.g>
                 <wx.perm.g>/home/work/lsh-payment/cert/cert_test/apiclient_cert.p12</wx.perm.g>
                 <wx.notify.url>http://testpay.wmdev2.lsh123.com/pay/wxpay/notify</wx.notify.url>
                 <ali.notify.url>http://testpay.wmdev2.lsh123.com/pay/alipay/notify</ali.notify.url>
@@ -188,17 +188,17 @@
                 <dubbo.ip>127.0.0.1</dubbo.ip>
                 <dubbo.port>20890</dubbo.port>
                 <rest.port>9307</rest.port>
-                <qf.app.code>354A4AB31BBE4F08B5FAA5EC6D7E847A</qf.app.code>
-                <qf.server_code>B05CD31E422E4B97BE5CFC8BD1F207F0</qf.server_code>
-                <qf.api>https://openapi.qfpay.com</qf.api>
-                <wx.appid>wx2fb72cee63adb91d</wx.appid>
-                <wx.mchid>1303064301</wx.mchid>
-                <wx.key>d4627dde2149d77dc17d649495aeb898</wx.key>
-                <wx.appsecret>6a6dfae2d44d81dd463845ae9f197814</wx.appsecret>
-                <wx.appid.g>wx8878414fa9740521</wx.appid.g>
-                <wx.mchid.g>1485118712</wx.mchid.g>
-                <wx.key.g>lsh123RRtuiyBGh769hyGTYtr76549hy</wx.key.g>
-                <wx.appsecret.g>8ef2b8074970a4366fbe27a9056c71d6</wx.appsecret.g>
+                <qf.app.code>001</qf.app.code>
+                <qf.server_code>0001</qf.server_code>
+                <qf.api>001</qf.api>
+                <wx.appid>001</wx.appid>
+                <wx.mchid>111</wx.mchid>
+                <wx.key>11</wx.key>
+                <wx.appsecret>11</wx.appsecret>
+                <wx.appid.g>11</wx.appid.g>
+                <wx.mchid.g>111</wx.mchid.g>
+                <wx.key.g>11</wx.key.g>
+                <wx.appsecret.g>111</wx.appsecret.g>
                 <wx.perm.g>/home/payment/cert/cert_groupon/apiclient_cert.p12</wx.perm.g>
                 <wx.notify.url>http://api.pay.lsh123.com/pay/wxpay/notify</wx.notify.url>
                 <ali.notify.url>http://api.pay.lsh123.com/pay/alipay/notify</ali.notify.url>
@@ -224,16 +224,16 @@
                 <dubbo.ip>127.0.0.1</dubbo.ip>
                 <dubbo.port>20890</dubbo.port>
                 <rest.port>9307</rest.port>
-                <qf.app.code>354A4AB31BBE4F08B5FAA5EC6D7E847A</qf.app.code>
-                <qf.server_code>B05CD31E422E4B97BE5CFC8BD1F207F0</qf.server_code>
-                <qf.api>https://openapi.qfpay.com</qf.api>
-                <wx.appid>wx2fb72cee63adb91d</wx.appid>
-                <wx.mchid>1303064301</wx.mchid>
-                <wx.key>d4627dde2149d77dc17d649495aeb898</wx.key>
-                <wx.appsecret>6a6dfae2d44d81dd463845ae9f197814</wx.appsecret>
-                <wx.appid.g>wx2fb72cee63adb91d</wx.appid.g>
-                <wx.mchid.g>1303064301</wx.mchid.g>
-                <wx.key.g>d4627dde2149d77dc17d649495aeb898</wx.key.g>
+                <qf.app.code>111</qf.app.code>
+                <qf.server_code>111</qf.server_code>
+                <qf.api>https://1111.qfpay.com</qf.api>
+                <wx.appid>1111</wx.appid>
+                <wx.mchid>111</wx.mchid>
+                <wx.key>111</wx.key>
+                <wx.appsecret>111</wx.appsecret>
+                <wx.appid.g>1111</wx.appid.g>
+                <wx.mchid.g>1111</wx.mchid.g>
+                <wx.key.g>1111</wx.key.g>
                 <wx.perm.g>/Users/peter/groupon/cert_test/apiclient_cert.p12</wx.perm.g>
                 <wx.appsecret.g>6a6dfae2d44d81dd463845ae9f197814</wx.appsecret.g>
                 <wx.notify.url>http://api.pay.lsh123.com/pay/wxpay/notify</wx.notify.url>

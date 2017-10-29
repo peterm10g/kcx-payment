@@ -11,9 +11,9 @@ import org.springframework.stereotype.Component;
 public class AliPayConfig {
 
     // 合作身份者ID，签约账号，以2088开头由16位纯数字组成的字符串，查看地址：https://b.alipay.com/order/pidAndKey.htm
-    public static final String partner = "2088121287862492";
+    public static final String partner = "32323";
 
-    public static final String app_id = "2015111800831855";
+    public static final String app_id = "32323";
 
     // 收款支付宝账号，以2088开头由16位纯数字组成的字符串，一般情况下收款账号就是签约账号
     public static final String seller_id = partner;
@@ -21,30 +21,12 @@ public class AliPayConfig {
     public static final String seller_id_new = "lsh123_wx@sina.com";
 
     //商户的私钥,需要PKCS8格式，RSA公私钥生成：https://doc.open.alipay.com/doc2/detail.htm?spm=a219a.7629140.0.0.nBDxfy&treeId=58&articleId=103242&docType=1
-    public static final String private_key = "MIICdgIBADANBgkqhkiG9w0BAQEFAASCAmAwggJcAgEAAoGBAKZfq5WKE/ZGXV9+\n" +
-            "KExpkFeei7WasoVA4A8zavB974Z4sdhq9BHnLC9qlKPdOBVoSTZlaOZrC17Fm7YZ" +
-            "aB2vKhCXAIG3ofI99L9rmefL8vWcCx4k6GmAp3DNCAzCUmljGK+kXHP1+w2wavqV" +
-            "o6OsNXGPS+dxxw4FIgVuORqY5NLFAgMBAAECgYAXHd/nbUIMzAYZSJws0dYedocO" +
-            "+qmnXjZDpm9LbxQi6Q489c9n1WkMRZDVm905DD5v8nM64NC5oFdcW/ddeIMthZBQ" +
-            "Xp5F/46ZFHAzQqbC4FnP999x2qozZDELjiiTLNibasmndEX3BX5IWjY4CJcFMxjR" +
-            "UUIypj69ST9tS2Q5wQJBANLznq2evQin4e2JkWXdQz8GgvT172j33wn3x5xSkX8V" +
-            "kXXwaESP2YexepDLMetMtY0lFoZYD1ouKFQxaua5/MkCQQDJ5wxW6Zt9QO1gHYDF" +
-            "DQ0U+Obu9zUn0kJ4qdUOCw0Y7XaWL7UpiQYRhcagLwbJpp4mFHl8LLTGA8n8J1Oh" +
-            "QbAdAkA1WukHgN7PEadTLThZS112027MBmhHZGpFWyZho4CpZAsmiWfV74xVhc46" +
-            "USqPGRfSW08XK662YHZS1Sz0rpYBAkEAvaW4Un8V3Z46Gjk8Nlue+R8fFEHCfUgj" +
-            "xeGIzasVv192L3Zajcw2lgj5XIcvsgQ+svgycLAxkXoHpUFvbZ4dBQJAX1YKMXTF" +
-            "tTfYnokXDNY56cQnHhSEso7LW9i/DTVzJmo7Xj7DvvC5cpQubaFC1ZtEpikZ7Vzr" +
-            "hkwF8RQnOUfjag==";
+    public static final String private_key = "kjhjhjh";
     //合作者支付宝公钥
-    public static final String public_key = "MIGfMA0GCSqGSIb3DQEBAQUAA4GNADCBiQKBgQCnxj/9qwVfgoUh/y2W89L6BkRA" +
-            "FljhNhgPdyPuBV64bfQNN1PjbCzkIM6qRdKBoLPXmKKMiFYnkd6rAoprih3/PrQE" +
-            "B/VsW8OoM8fxn67UDYuyBTqA23MML9q1+ilIZwBC2AQ2UBVOrFXfFl75p6/B5Ksi" +
-            "NG9zpgmLCUYuLkxpLQIDAQAB";
+    public static final String public_key = "kjjhuu";
 
     //应用支付宝的公钥,查看地址：https://b.alipay.com/order/pidAndKey.htm
-    public static final String alipay_public_key = "MIGfMA0GCSqGSIb3DQEBAQUAA4GNADCBiQKBgQDDI6d306Q8fIfCOaTXyiUe" +
-            "JHkrIvYISRcc73s3vF1ZT7XN8RNPwJxo8pWaJMmvyTn9N4HQ632qJBVHf8sxHi/fEsraprwCtzvzQETrNRwVxLO5jVmRG" +
-            "i60j8Ue1efIlzPXV9je9mkjzOmdssymZkh2QhUrCmZYI/FCEa3/cNMW0QIDAQAB";
+    public static final String alipay_public_key = "HGFYY";
 
     // 服务器异步通知页面路径  需http://格式的完整路径，不能加?id=123这类自定义参数，必须外网可以正常访问
     public static final String notify_url = PropertiesUtil.getValue("ali.notify.url");

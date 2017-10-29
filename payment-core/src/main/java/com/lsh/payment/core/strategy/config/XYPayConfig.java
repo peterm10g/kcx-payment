@@ -10,9 +10,9 @@ import org.springframework.stereotype.Component;
 @Component
 public class XYPayConfig {
 
-    public static final String MAC_ID = "7551000001";
+    public static final String MAC_ID = "323";
     //后台服务通信密钥
-    public static final String KEY = "9d101c97133837e13dde2d32a5054abb";
+    public static final String KEY = "32323";
     //支付
     public static final String PAY_API = "https://pay.swiftpass.cn/pay/gateway";
     //查询
