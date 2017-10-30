@@ -91,10 +91,7 @@ public class PaymentService implements IPayRestService {
                 throw new BusinessException(ExceptionStatus.E2001002.getCode(), "channelType 参数异常");
             }
 
-            logger.info("paymentRequest.getSystem is " + paymentRequest.getSystem());
-            if (paymentRequest.getSystem() == null) {
-                paymentRequest.setSystem(1);
-            }
+            paymentRequest.setSystem(1);
             logger.info("paymentRequest.getSystem is must " + paymentRequest.getSystem());
 
             baseResponse = payServices.get(serviceName).prepay(paymentRequest);

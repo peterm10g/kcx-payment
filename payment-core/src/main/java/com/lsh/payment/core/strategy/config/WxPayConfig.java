@@ -45,8 +45,8 @@ public class WxPayConfig {
 
 
     public static final String IP = "115.182.215.48";
-    public static final String GOODS_NAME = "链商优供-支付";
-    public static final String GROUPON_GOODS_NAME = "邻选-支付";
+    public static final String GOODS_NAME = "趣口才-支付";
+    public static final String GROUPON_GOODS_NAME = "趣口才-支付";
 
     public static final String PAY_API = "https://api.mch.weixin.qq.com/pay/unifiedorder";
     public static final String QUERY_API = "https://api.mch.weixin.qq.com/pay/orderquery";

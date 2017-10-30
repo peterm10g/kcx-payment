@@ -34,7 +34,7 @@ import java.util.concurrent.TimeUnit;
 /**
  * Project Name: lsh-payment
  * Created by peter on 16/11/25.
- * 北京链商电子商务有限公司
+ * 商务有限公司
  * Package
  * desc:
  */
