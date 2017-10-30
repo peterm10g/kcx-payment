@@ -20,10 +20,6 @@ public class BillStrategyFactory {
 
         strategyMap.put(PayChannel.WXPAY.getName(), new WxBillStrategy());
         strategyMap.put(PayChannel.ALIPAY.getName(), new AliBillStrategy());
-        strategyMap.put(PayChannel.QFPAY.getName(), new QfBillStrategy());
-        strategyMap.put(PayChannel.LKLPAY.getName(), new LklBillStrategy());
-        strategyMap.put(PayChannel.WXPAYGROUPON.getName(), new WxGrouponBillStrategy());
-        strategyMap.put(PayChannel.XYPAY.getName(), new XyBillStrategy());
 
     }
 
