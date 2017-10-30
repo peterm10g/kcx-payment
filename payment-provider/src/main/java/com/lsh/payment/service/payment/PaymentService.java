@@ -11,10 +11,7 @@ import com.lsh.payment.core.constant.RedisKeyConstant;
 import com.lsh.payment.core.dao.redis.RedisStringDao;
 import com.lsh.payment.core.exception.BusinessException;
 import com.lsh.payment.core.model.Async.PayMonitorInterfaceModel;
-import com.lsh.payment.core.model.payEnum.PayChannel;
 import com.lsh.payment.core.model.payEnum.PayService;
-import com.lsh.payment.core.model.payEnum.TradeModule;
-import com.lsh.payment.core.model.payEnum.TradeType;
 import com.lsh.payment.core.service.AsyncService.AsyncEvent;
 import com.lsh.payment.core.service.RedisService.RedisLockService;
 import com.lsh.payment.core.service.payment.IPayChannelService;
@@ -32,7 +29,6 @@ import javax.ws.rs.Path;
 import javax.ws.rs.Produces;
 import javax.ws.rs.core.MediaType;
 import java.text.MessageFormat;
-import java.util.HashMap;
 import java.util.Map;
 
 /**
@@ -67,17 +63,7 @@ public class PaymentService implements IPayRestService {
     @Value("${payment.create.percentage}")
     private Integer percentage;
 
-    static {
-        strategyMap = new HashMap<>();
-//        strategyMap.put(TradeType.QFWXSM.getCode() + "", TradeType.XYWXSM.getCode() + "");
-//        strategyMap.put(TradeType.QFALISM.getCode() + "", TradeType.XYALISM.getCode() + "");
 
-//        strategyMap.put(TradeType.QFWXSM.getCode() + "", TradeType.CMBCWXSM.getCode() + "");
-//        strategyMap.put(TradeType.QFALISM.getCode() + "", TradeType.CMBCALISM.getCode() + "");
-
-        strategyMap.put(TradeType.QFWXSM.getCode() + "", TradeType.ALLINWXSM.getCode() + "");
-        strategyMap.put(TradeType.QFALISM.getCode() + "", TradeType.ALLINALISM.getCode() + "");
-    }
 
 
     @POST
@@ -99,9 +85,6 @@ public class PaymentService implements IPayRestService {
             }
 
             PayAssert.isAmount(paymentRequest.getRequest_amount().toString(), ExceptionStatus.E1002001.getCode(), "支付金额不合法,小数点后最多两位,且大于0,例如(12.25,0.88)");
-
-
-            this.strategyFilter(paymentRequest);
 
             String serviceName = PayService.getServiceByCode(paymentRequest.getChannel_type());
             if (StringUtils.isBlank(serviceName)) {
@@ -146,84 +129,5 @@ public class PaymentService implements IPayRestService {
         return baseResponse;
     }
 
-    /**
-     * @param paymentRequest
-     */
-    private void strategyFilter(PaymentRequest paymentRequest) {
-        String filterPrefix = "【下单扫码策略】[" + paymentRequest.getTrade_id() + "] ";
-
-        if (!strategy.equals("yes")) {
-            logger.info("{} strategy is {}", filterPrefix, strategy);
-            return;
-        }
-
-        if (Integer.parseInt(paymentRequest.getChannel_type()) <= TradeType.LKL.getCode()) {
-            logger.info("{} Channel_type is {}", filterPrefix, paymentRequest.getChannel_type());
-            return;
-        }
-
-        // TODO Channel_type 处理 待优化
-
-        PayAssert.notNull(paymentRequest.getTrade_module(), ExceptionStatus.E1002002.getCode(), ExceptionStatus.E1002002.getMessage());
-        //bill 扫码支付用兴业银行
-        if (paymentRequest.getTrade_module().equals(TradeModule.BILL.getName())) {
-            String chanType = strategyMap.get(paymentRequest.getChannel_type());
-            if (StringUtils.isNotBlank(chanType)) {
-                paymentRequest.setChannel_type(chanType);
-            }
-        } else {
-            String timesKey = RedisKeyConstant.PAY_TRADE_TIMES;
-            String smKey = MessageFormat.format(RedisKeyConstant.PAY_TRADE_SM_CHANNEL, paymentRequest.getTrade_id());
-            String payChannel = redisStringDao.get(smKey);
-            if (StringUtils.isNotBlank(payChannel)) {
-                String chanType = "";
-                if (payChannel.equals(PayChannel.XYPAY.getName())) {
-                    chanType = strategyMap.get(paymentRequest.getChannel_type());
-                    if(StringUtils.isNotBlank(chanType)){
-                        paymentRequest.setChannel_type(chanType);
-                    }
-                }
-
-                logger.info("{} redis 渠道值 = {}", filterPrefix, payChannel + " : " + chanType);
-                return;
-            }
-
-            Long tradeTimes = redisStringDao.increment(timesKey);
-            logger.info("{} redis tradeTimes = {}", filterPrefix, tradeTimes);
-            int lastNum = 0;
-            if (tradeTimes != null) {
-                String tradeTimesStr = tradeTimes.toString();
-                String _lastNum = tradeTimesStr.substring(tradeTimesStr.length() - 1);
-                if (StringUtils.isNotBlank(_lastNum)) {
-                    lastNum = Integer.parseInt(_lastNum);
-                }
-            }
-            logger.info("{} strategy lastNum = {}", filterPrefix, lastNum);
-            if (lastNum < percentage) {
-
-                String chanType = strategyMap.get(paymentRequest.getChannel_type());
-                logger.info("{} strategyMap channelType = {}", filterPrefix, chanType);
-                if (StringUtils.isNotBlank(chanType)) {
-                    paymentRequest.setChannel_type(chanType);
-
-                    redisStringDao.set(smKey, PayChannel.XYPAY.getName());
-                    //24 * 60 * 60
-                    redisStringDao.expire(smKey, 86400);
-                }
-            } else {
-                String chanType = paymentRequest.getChannel_type();
-                logger.info("{} paymentRequest channelType = {}", filterPrefix, chanType);
-                if (StringUtils.isNotBlank(chanType)) {
-                    paymentRequest.setChannel_type(chanType);
-
-                    redisStringDao.set(smKey, PayChannel.WXPAY.getName());
-                    //24 * 60 * 60
-                    redisStringDao.expire(smKey, 86400);
-                }
-            }
-        }
-
-        logger.info("{} strategy lastNum = {}", filterPrefix, JSON.toJSONString(paymentRequest));
-    }
 
 }

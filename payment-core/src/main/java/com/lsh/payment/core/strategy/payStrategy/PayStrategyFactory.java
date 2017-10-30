@@ -20,10 +20,6 @@ public class PayStrategyFactory {
     static {
         strategyMap.put(BusiConstant.ALIPAY, new AlipayStrategy());
         strategyMap.put(BusiConstant.WECHATPAY, new WxPayStrategy());
-        strategyMap.put(BusiConstant.QFPAY, new QfPayStrategy());
-        strategyMap.put(BusiConstant.XYPAY, new XyPayStrategy());
-        strategyMap.put(BusiConstant.CMBCPAY, new CMBCPayStrategy());
-        strategyMap.put(BusiConstant.ALLINPAY, new AllinPayStrategy());
     }
 
     private PayStrategyFactory() {

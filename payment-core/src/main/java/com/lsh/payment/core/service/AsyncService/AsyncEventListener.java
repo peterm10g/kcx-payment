@@ -17,13 +17,10 @@ import com.lsh.payment.core.model.payment.PayDeal;
 import com.lsh.payment.core.service.businessNotify.BusinessNotifyService;
 import com.lsh.payment.core.service.email.SendEmailService;
 import com.lsh.payment.core.service.payTask.PayTaskService;
-import com.lsh.payment.core.service.qfpay.impl.QfQueryServiceImpl;
-import com.lsh.payment.core.service.xypay.impl.XyQueryServiceImpl;
 import com.lsh.payment.core.strategy.config.QFPayConfig;
 import com.lsh.payment.core.strategy.config.WxPayConfig;
 import com.lsh.payment.core.util.DateUtil;
 import org.apache.commons.lang3.RandomStringUtils;
-import org.jsoup.helper.StringUtil;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -71,13 +68,7 @@ public class AsyncEventListener {
     private PayLogDao payLogDao;
 
     @Autowired
-    private QfQueryServiceImpl qfQueryService;
-
-    @Autowired
     private PayTaskService payTaskService;
-
-    @Autowired
-    private XyQueryServiceImpl xyQueryService;
 
     /**
      * 发送邮件
@@ -279,46 +270,6 @@ public class AsyncEventListener {
         } catch (Exception e) {
             logger.error("记录日志异常", e);
         }
-    }
-
-    /**
-     * 钱方查询
-     *
-     * @param queryModel 监听类
-     */
-    @Subscribe
-    @AllowConcurrentEvents
-    public void qfQuery(QueryModel queryModel) {
-        logger.info("钱方异步查询开始");
-        //5s一次
-        String qfQuerykey = MessageFormat.format(RedisKeyConstant.QF_QUERY_KEY, queryModel.getPayDeal().getChannelTransaction());
-        String qfQueryLock = redisStringDao.get(qfQuerykey);
-        if (StringUtil.isBlank(qfQueryLock)) {
-            redisStringDao.set(qfQuerykey, "1");
-            redisListDao.expire(qfQuerykey, qfQueryTimeout);
-            qfQueryService.query(queryModel.getPayDeal());
-        }
-        logger.info("钱方异步查询结束");
-    }
-
-    /**
-     * 钱方查询
-     *
-     * @param queryModel 监听类
-     */
-    @Subscribe
-    @AllowConcurrentEvents
-    public void xyQuery(XyQueryModel queryModel) {
-        logger.info("钱方异步查询开始");
-        //5s一次
-        String qfQuerykey = MessageFormat.format(RedisKeyConstant.XY_QUERY_KEY, queryModel.getPayDeal().getPayPaymentNo());
-        String qfQueryLock = redisStringDao.get(qfQuerykey);
-        if (StringUtil.isBlank(qfQueryLock)) {
-            redisStringDao.set(qfQuerykey, "1");
-            redisListDao.expire(qfQuerykey, qfQueryTimeout);
-            xyQueryService.query(queryModel.getPayDeal());
-        }
-        logger.info("钱方异步查询结束");
     }
 
     /**

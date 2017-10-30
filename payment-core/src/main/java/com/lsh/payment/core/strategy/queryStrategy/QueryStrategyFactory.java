@@ -20,10 +20,6 @@ public class QueryStrategyFactory {
 
         strategyMap.put(BusiConstant.WECHATQUERY, new WxQueryStrategy());
         strategyMap.put(BusiConstant.ALIQUERY, new AliQueryStrategy());
-        strategyMap.put(BusiConstant.QFQUERY,new QfQueryStrategy());
-        strategyMap.put(BusiConstant.XYQUERY,new XyQueryStrategy());
-        strategyMap.put(BusiConstant.CMBCQUERY,new CmbcQueryStrategy());
-        strategyMap.put(BusiConstant.ALLINQUERY,new AllinQueryStrategy());
     }
 
     private QueryStrategyFactory() {
