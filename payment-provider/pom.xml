@@ -107,36 +107,24 @@
             <properties>
                 <profile.name>dev</profile.name>
                 <log.file>/Users/peter/logs</log.file>
-                <db.url>jdbc:mysql://192.168.60.48:5201/lsh_payment?useUnicode=true&amp;autoReconnect=true&amp;characterEncoding=UTF8&amp;allowMultiQueries=true</db.url>
-                <db.username>root</db.username>
-                <db.password>root123</db.password>
+                <db.url>jdbc:mysql://koucaiceping.mysql.rds.aliyuncs.com:3600/kcx_payment?useUnicode=true&amp;autoReconnect=true&amp;characterEncoding=UTF8&amp;allowMultiQueries=true</db.url>
+                <db.username>koucaixing</db.username>
+                <db.password>Y4uYvzsdWf6wmU</db.password>
                 <zookeeper.ip>127.0.0.1:2181</zookeeper.ip>
                 <dubbo.ip>127.0.0.1</dubbo.ip>
                 <dubbo.port>8082</dubbo.port>
                 <rest.port>8888</rest.port>
-                <qf.app.code>654</qf.app.code>
-                <qf.server_code>uhg</qf.server_code>
-                <qf.api>api</qf.api>
-                <wx.appid>wxa25e306362e511c6</wx.appid>
-                <wx.mchid>1297999701</wx.mchid>
-                <wx.key>d4627dde2149d77dc17d649495aeb892</wx.key>
-                <wx.appsecret>61d9fa305ed83d4a640d31068876194b</wx.appsecret>
-                <wx.appid.g>111</wx.appid.g>
-                <wx.mchid.g>1111</wx.mchid.g>
-                <wx.key.g>1111</wx.key.g>
-                <wx.appsecret.g>1111</wx.appsecret.g>
-                <wx.perm.g>/Users/peter/groupon/cert_test/apiclient_cert.p12</wx.perm.g>
+                <wx.appid>wxe9bacb255411f556</wx.appid>
+                <wx.appsecret>6a778b772908cfb7dbd448d125e99795</wx.appsecret>
+                <wx.mchid>1490831152</wx.mchid>
+                <wx.key>qkcsnGmFKg75eP9o5hZE59pOVEM26p0T</wx.key>
                 <wx.notify.url>http://testpay.wmdev2.lsh123.com/pay/wxpay/notify</wx.notify.url>
-                <ali.notify.url>http://testpay.wmdev2.lsh123.com/pay/alipay/notify</ali.notify.url>
-                <allin.notify.url>http://testpay.wmdev2.lsh123.com/pay/allinpay/notify</allin.notify.url>
-                <xy.notify.url>http://testpay.wmdev2.lsh123.com/pay/xypay/notify</xy.notify.url>
-                <lkl.perm.path>/home/work/lsh-payment/tool/</lkl.perm.path>
-                <redis.host.w>127.0.0.1</redis.host.w>
+                <redis.host.w>47.95.38.108</redis.host.w>
                 <redis.port.w>6379</redis.port.w>
-                <redis.passwd.w></redis.passwd.w>
-                <redis.host.r>127.0.0.1</redis.host.r>
+                <redis.passwd.w>ZuYBKSZdyRa7</redis.passwd.w>
+                <redis.host.r>47.95.38.108</redis.host.r>
                 <redis.port.r>6379</redis.port.r>
-                <redis.passwd.r></redis.passwd.r>
+                <redis.passwd.r>ZuYBKSZdyRa7</redis.passwd.r>
             </properties>
         </profile>
         <profile>
@@ -181,35 +169,24 @@
             <properties>
                 <profile.name>pro</profile.name>
                 <log.file>/home/payment/data/payment-provider/logs</log.file>
-                <db.url>jdbc:mysql://192.168.60.152:5300/lsh_payment?useUnicode=true&amp;autoReconnect=true&amp;characterEncoding=UTF8&amp;allowMultiQueries=true</db.url>
-                <db.username>order</db.username>
-                <db.password>Lsh@Order2016</db.password>
-                <zookeeper.ip>192.168.60.153:2181?backup=192.168.60.151:2181,192.168.60.152:2181</zookeeper.ip>
+                <db.url>jdbc:mysql://koucaiceping.mysql.rds.aliyuncs.com:3600/kcx_payment?useUnicode=true&amp;autoReconnect=true&amp;characterEncoding=UTF8&amp;allowMultiQueries=true</db.url>
+                <db.username>koucaixing</db.username>
+                <db.password>Y4uYvzsdWf6wmU</db.password>
+                <zookeeper.ip>10.80.54.139:2181</zookeeper.ip>
                 <dubbo.ip>127.0.0.1</dubbo.ip>
                 <dubbo.port>20890</dubbo.port>
                 <rest.port>9307</rest.port>
-                <qf.app.code>001</qf.app.code>
-                <qf.server_code>0001</qf.server_code>
-                <qf.api>001</qf.api>
-                <wx.appid>001</wx.appid>
-                <wx.mchid>111</wx.mchid>
-                <wx.key>11</wx.key>
-                <wx.appsecret>11</wx.appsecret>
-                <wx.appid.g>11</wx.appid.g>
-                <wx.mchid.g>111</wx.mchid.g>
-                <wx.key.g>11</wx.key.g>
-                <wx.appsecret.g>111</wx.appsecret.g>
-                <wx.perm.g>/home/payment/cert/cert_groupon/apiclient_cert.p12</wx.perm.g>
+                <wx.appid>wxe9bacb255411f556</wx.appid>
+                <wx.appsecret>6a778b772908cfb7dbd448d125e99795</wx.appsecret>
+                <wx.mchid>1490831152</wx.mchid>
+                <wx.key>qkcsnGmFKg75eP9o5hZE59pOVEM26p0T</wx.key>
                 <wx.notify.url>http://api.pay.lsh123.com/pay/wxpay/notify</wx.notify.url>
-                <ali.notify.url>http://api.pay.lsh123.com/pay/alipay/notify</ali.notify.url>
-                <xy.notify.url>http://api.pay.lsh123.com/pay/xypay/notify</xy.notify.url>
-                <lkl.perm.path>/home/payment/perm/</lkl.perm.path>
-                <redis.host.w>192.168.60.152</redis.host.w>
-                <redis.port.w>6700</redis.port.w>
-                <redis.passwd.w></redis.passwd.w>
-                <redis.host.r>192.168.60.152</redis.host.r>
-                <redis.port.r>6700</redis.port.r>
-                <redis.passwd.r></redis.passwd.r>
+                <redis.host.w>47.95.38.108</redis.host.w>
+                <redis.port.w>6379</redis.port.w>
+                <redis.passwd.w>ZuYBKSZdyRa7</redis.passwd.w>
+                <redis.host.r>47.95.38.108</redis.host.r>
+                <redis.port.r>6379</redis.port.r>
+                <redis.passwd.r>ZuYBKSZdyRa7</redis.passwd.r>
             </properties>
         </profile>
         <profile>
@@ -231,21 +208,13 @@
                 <wx.mchid>111</wx.mchid>
                 <wx.key>111</wx.key>
                 <wx.appsecret>111</wx.appsecret>
-                <wx.appid.g>1111</wx.appid.g>
-                <wx.mchid.g>1111</wx.mchid.g>
-                <wx.key.g>1111</wx.key.g>
-                <wx.perm.g>/Users/peter/groupon/cert_test/apiclient_cert.p12</wx.perm.g>
-                <wx.appsecret.g>6a6dfae2d44d81dd463845ae9f197814</wx.appsecret.g>
                 <wx.notify.url>http://api.pay.lsh123.com/pay/wxpay/notify</wx.notify.url>
-                <ali.notify.url>http://api.pay.lsh123.com/pay/alipay/notify</ali.notify.url>
-                <xy.notify.url>http://api.pay.lsh123.com/pay/xypay/notify</xy.notify.url>
-                <lkl.perm.path>/home/payment/perm/</lkl.perm.path>
-                <redis.host.w>192.168.60.152</redis.host.w>
-                <redis.port.w>6700</redis.port.w>
-                <redis.passwd.w></redis.passwd.w>
-                <redis.host.r>192.168.60.152</redis.host.r>
-                <redis.port.r>6700</redis.port.r>
-                <redis.passwd.r></redis.passwd.r>
+                <redis.host.w>47.95.38.108</redis.host.w>
+                <redis.port.w>6379</redis.port.w>
+                <redis.passwd.w>ZuYBKSZdyRa7</redis.passwd.w>
+                <redis.host.r>47.95.38.108</redis.host.r>
+                <redis.port.r>6379</redis.port.r>
+                <redis.passwd.r>ZuYBKSZdyRa7</redis.passwd.r>
             </properties>
         </profile>
     </profiles>
