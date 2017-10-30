@@ -8,7 +8,6 @@ import com.lsh.payment.api.model.baseVo.ExceptionStatus;
 import com.lsh.payment.api.model.payment.PaymentRequest;
 import com.lsh.payment.api.service.payment.IPayRestService;
 import com.lsh.payment.core.constant.RedisKeyConstant;
-import com.lsh.payment.core.dao.redis.RedisStringDao;
 import com.lsh.payment.core.exception.BusinessException;
 import com.lsh.payment.core.model.Async.PayMonitorInterfaceModel;
 import com.lsh.payment.core.model.payEnum.PayService;
@@ -53,9 +52,6 @@ public class PaymentService implements IPayRestService {
 
     @Autowired
     private RedisLockService redisLockService;
-
-    @Autowired
-    private RedisStringDao redisStringDao;
 
     @Value("${payment.create.strategy}")
     private String strategy;

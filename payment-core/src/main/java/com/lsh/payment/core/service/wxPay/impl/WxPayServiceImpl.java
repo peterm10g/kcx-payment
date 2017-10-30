@@ -188,9 +188,6 @@ public class WxPayServiceImpl implements IPayChannelService {
             throw new BusinessException(ExceptionStatus.E2001005.getCode(), ExceptionStatus.E2001005.getMessage());
         }
 
-        //记录操作日志
-        payLogService.insertLog(payDeal.getPayId(), payDeal.getPayPaymentNo(), payDeal.getTradeId(), PayStatus.CREATE_PAYMENT.getValue(), BusiConstant.OPERATE_SUCCESS, JSON.toJSONString(paymentRequest), JSON.toJSONString(wxResponse));
-
         return wxResponse;
     }
 

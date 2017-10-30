@@ -54,17 +54,6 @@ public class PayQueryRestService implements IPayQueryRestService {
     @Path("query")
     public BaseResponse queryPayStatus(PaymentQueryRequest paymentQueryRequest) {
 
-//        List<String> lockKeys = new ArrayList<>();
-//        for (int i = 0; i < 5000; i++) {
-//            lockKeys.add("pay:" + i);
-//
-//            redisStringDao.set("pay:" + i,"oop " + i);
-//        }
-//
-//        long t1 = System.currentTimeMillis();
-//        redisLockService.pipelineSample(lockKeys);
-//        logger.info("redis time is {}",System.currentTimeMillis() - t1);
-
         QueryResponse queryResponse = new QueryResponse();
 
         long beginTime = System.currentTimeMillis();
