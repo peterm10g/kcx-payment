@@ -35,7 +35,7 @@
 
     <!-- 服务提供者协议配置 -->
     <dubbo:protocol name="dubbo" serialization="kryo" optimizer="com.lsh.payment.api.serialize.SerializationOptimizerImpl"/>
-    <dubbo:protocol name="rest"  port="${rest.port}" contextpath="pay/v1" server="tomcat"
+    <dubbo:protocol name="rest"  port="${rest.port}" contextpath="pay/v2" server="tomcat"
                     extension="com.alibaba.dubbo.rpc.protocol.rest.support.LoggingFilter,
                                com.lsh.payment.service.common.HttpRequestFilter,
                                com.lsh.payment.service.common.BusinessExceptionMapper,

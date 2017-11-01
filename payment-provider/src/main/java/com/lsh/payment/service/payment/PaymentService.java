@@ -60,8 +60,6 @@ public class PaymentService implements IPayRestService {
     private Integer percentage;
 
 
-
-
     @POST
     @Path("prepayment")
     public BaseResponse prePayment(PaymentRequest paymentRequest) {

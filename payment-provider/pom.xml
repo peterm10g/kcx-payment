@@ -168,14 +168,14 @@
             <id>pro</id>
             <properties>
                 <profile.name>pro</profile.name>
-                <log.file>/home/payment/data/payment-provider/logs</log.file>
+                <log.file>/root/data/payment-provider/logs</log.file>
                 <db.url>jdbc:mysql://koucaiceping.mysql.rds.aliyuncs.com:3600/kcx_payment?useUnicode=true&amp;autoReconnect=true&amp;characterEncoding=UTF8&amp;allowMultiQueries=true</db.url>
                 <db.username>koucaixing</db.username>
                 <db.password>Y4uYvzsdWf6wmU</db.password>
                 <zookeeper.ip>10.80.54.139:2181</zookeeper.ip>
                 <dubbo.ip>127.0.0.1</dubbo.ip>
                 <dubbo.port>27001</dubbo.port>
-                <rest.port>9001</rest.port>
+                <rest.port>7001</rest.port>
                 <wx.appid>wxe9bacb255411f556</wx.appid>
                 <wx.appsecret>6a778b772908cfb7dbd448d125e99795</wx.appsecret>
                 <wx.mchid>1490831152</wx.mchid>
