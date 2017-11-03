@@ -9,12 +9,9 @@ import com.lsh.payment.api.model.payment.PaymentRequest;
 import com.lsh.payment.api.service.payment.IPayRestService;
 import com.lsh.payment.core.constant.RedisKeyConstant;
 import com.lsh.payment.core.exception.BusinessException;
-import com.lsh.payment.core.model.Async.PayMonitorInterfaceModel;
 import com.lsh.payment.core.model.payEnum.PayService;
-import com.lsh.payment.core.service.AsyncService.AsyncEvent;
 import com.lsh.payment.core.service.RedisService.RedisLockService;
 import com.lsh.payment.core.service.payment.IPayChannelService;
-import com.lsh.payment.core.util.DateUtil;
 import com.lsh.payment.core.util.PayAssert;
 import org.apache.commons.lang3.StringUtils;
 import org.slf4j.Logger;
@@ -66,7 +63,6 @@ public class PaymentService implements IPayRestService {
         BaseResponse baseResponse = new BaseResponse();
 
         logger.info("支付平台统一下单请求: {} .", JSON.toJSONString(paymentRequest));
-        long beginTime = System.currentTimeMillis();
         String key = MessageFormat.format(RedisKeyConstant.PAY_TRADE_LOCK, paymentRequest.getTrade_id());
         try {
             //重复下单锁
@@ -103,18 +99,6 @@ public class PaymentService implements IPayRestService {
             } catch (Exception e) {
                 logger.error("redis 操作异常", e);
             }
-        }
-
-        try {
-            long wasteTime = System.currentTimeMillis() - beginTime;
-            logger.info("tradeid is {} 统一下单接口耗时 {} 毫秒。", paymentRequest.getTrade_id(), wasteTime);
-            String wasteTimeStr = (new StringBuffer(DateUtil.nowStrFormate())).append("[").append(wasteTime).append("]").toString();
-            PayMonitorInterfaceModel payMonitorInterfaceModel = new PayMonitorInterfaceModel(paymentRequest, wasteTimeStr, this.getClass().getSimpleName());
-            if (!baseResponse.getRet().toString().equals(ExceptionStatus.SUCCESS.getCode()))
-                payMonitorInterfaceModel.setResultFlag(false);
-            AsyncEvent.post(payMonitorInterfaceModel);
-        } catch (Throwable e) {
-            logger.error("收集监控信息失败", e);
         }
 
         return baseResponse;

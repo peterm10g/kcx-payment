@@ -50,6 +50,41 @@ public class WxPayServiceImpl implements IPayChannelService {
     @Autowired
     private PayLogService payLogService;
 
+
+    /**
+     * app H5
+     *
+     * @param paymentRequest 微信预下单对象
+     * @return BaseResponse
+     */
+    @Override
+    @Transactional(rollbackFor = Exception.class)
+    public BaseResponse prepay(PaymentRequest paymentRequest) {
+
+        paymentRequest.setTrade_module(TradeModule.ORDER.getName());
+
+        if (paymentRequest.getPay_way().equals(PayWay.ANDROID.getName()) || paymentRequest.getPay_way().equals(PayWay.IOS.getName())) {
+
+            return this.payApp(paymentRequest);
+
+        } else if (paymentRequest.getPay_way().equals(PayWay.H5.getName())) {
+
+            PayAssert.notNull(paymentRequest.getReturn_url(), ExceptionStatus.E1002001.getCode(), "return_url为空");
+            PayAssert.notNull(paymentRequest.getOpenid(), ExceptionStatus.E1002001.getCode(), "openid 为空");
+
+            paymentRequest.setChannel_type(String.valueOf(TradeType.WXH5.getCode()));
+
+            return this.payH5(paymentRequest);
+
+        } else {
+
+            throw new BusinessException(ExceptionStatus.E2001002.getCode(), "pay_way 参数异常");
+        }
+
+    }
+
+
+
     /**
      * 微信app预下单
      *
@@ -251,36 +286,6 @@ public class WxPayServiceImpl implements IPayChannelService {
 
     }
 
-    /**
-     * app H5
-     *
-     * @param paymentRequest 微信预下单对象
-     * @return BaseResponse
-     */
-    @Override
-    @Transactional(rollbackFor = Exception.class)
-    public BaseResponse prepay(PaymentRequest paymentRequest) {
 
-        paymentRequest.setTrade_module(TradeModule.ORDER.getName());
-
-        if (paymentRequest.getPay_way().equals(PayWay.ANDROID.getName()) || paymentRequest.getPay_way().equals(PayWay.IOS.getName())) {
-
-            return this.payApp(paymentRequest);
-
-        } else if (paymentRequest.getPay_way().equals(PayWay.H5.getName())) {
-
-            PayAssert.notNull(paymentRequest.getReturn_url(), ExceptionStatus.E1002001.getCode(), "return_url为空");
-            PayAssert.notNull(paymentRequest.getOpenid(), ExceptionStatus.E1002001.getCode(), "openid 为空");
-
-            paymentRequest.setChannel_type(String.valueOf(TradeType.WXH5.getCode()));
-
-            return this.payH5(paymentRequest);
-
-        } else {
-
-            throw new BusinessException(ExceptionStatus.E2001002.getCode(), "pay_way 参数异常");
-        }
-
-    }
 
 }
