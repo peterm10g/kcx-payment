@@ -117,7 +117,7 @@
                 <wx.appid>wxe9bacb255411f556</wx.appid>
                 <wx.appsecret>2147adee25754d59ec08c75286b7709b</wx.appsecret>
                 <wx.mchid>1490831152</wx.mchid>
-                <wx.key>qkcsnGmFKg75eP9o5hZE59pOVEM26p0T</wx.key>
+                <wx.key>ssajjjwqQWcxzkjSWWjkdsaajksajkjk</wx.key>
                 <wx.notify.url>http://pay.cepingkaoji.com/pay/v2/wxpay/notify</wx.notify.url>
                 <redis.host.w>47.95.38.108</redis.host.w>
                 <redis.port.w>6379</redis.port.w>
@@ -142,7 +142,7 @@
                 <wx.appid>wxe9bacb255411f556</wx.appid>
                 <wx.appsecret>2147adee25754d59ec08c75286b7709b</wx.appsecret>
                 <wx.mchid>1490831152</wx.mchid>
-                <wx.key>qkcsnGmFKg75eP9o5hZE59pOVEM26p0T</wx.key>
+                <wx.key>ssajjjwqQWcxzkjSWWjkdsaajksajkjk</wx.key>
                 <wx.notify.url>http://pay.cepingkaoji.com/pay/v2/wxpay/notify</wx.notify.url>
                 <redis.host.w>47.95.38.108</redis.host.w>
                 <redis.port.w>6379</redis.port.w>
@@ -167,7 +167,7 @@
                 <wx.appid>wxe9bacb255411f556</wx.appid>
                 <wx.appsecret>2147adee25754d59ec08c75286b7709b</wx.appsecret>
                 <wx.mchid>1490831152</wx.mchid>
-                <wx.key>qkcsnGmFKg75eP9o5hZE59pOVEM26p0T</wx.key>
+                <wx.key>ssajjjwqQWcxzkjSWWjkdsaajksajkjk</wx.key>
                 <wx.notify.url>http://pay.cepingkaoji.com/pay/v2/wxpay/notify</wx.notify.url>
                 <redis.host.w>47.95.38.108</redis.host.w>
                 <redis.port.w>6379</redis.port.w>
