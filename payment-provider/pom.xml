@@ -115,7 +115,7 @@
                 <dubbo.port>8082</dubbo.port>
                 <rest.port>8888</rest.port>
                 <wx.appid>wxe9bacb255411f556</wx.appid>
-                <wx.appsecret>6a778b772908cfb7dbd448d125e99795</wx.appsecret>
+                <wx.appsecret>2147adee25754d59ec08c75286b7709b</wx.appsecret>
                 <wx.mchid>1490831152</wx.mchid>
                 <wx.key>qkcsnGmFKg75eP9o5hZE59pOVEM26p0T</wx.key>
                 <wx.notify.url>http://pay.cepingkaoji.com/pay/v2/wxpay/notify</wx.notify.url>
@@ -139,23 +139,12 @@
                 <dubbo.ip>127.0.0.1</dubbo.ip>
                 <dubbo.port>8078</dubbo.port>
                 <rest.port>8886</rest.port>
-                <qf.app.code>001</qf.app.code>
-                <qf.server_code>001</qf.server_code>
-                <qf.api>0001</qf.api>
                 <wx.appid>111</wx.appid>
                 <wx.mchid>111</wx.mchid>
                 <wx.key>1111</wx.key>
                 <wx.appsecret>1111</wx.appsecret>
-                <wx.appid.g>111</wx.appid.g>
-                <wx.mchid.g>1111</wx.mchid.g>
-                <wx.key.g>11111</wx.key.g>
-                <wx.appsecret.g>11111</wx.appsecret.g>
-                <wx.perm.g>/home/work/lsh-payment/cert/cert_test/apiclient_cert.p12</wx.perm.g>
                 <wx.notify.url>http://testpay.wmdev2.lsh123.com/pay/wxpay/notify</wx.notify.url>
                 <ali.notify.url>http://testpay.wmdev2.lsh123.com/pay/alipay/notify</ali.notify.url>
-                <allin.notify.url>http://testpay.wmdev2.lsh123.com/pay/allinpay/notify</allin.notify.url>
-                <xy.notify.url>http://testpay.wmdev2.lsh123.com/pay/xypay/notify</xy.notify.url>
-                <lkl.perm.path>/home/work/lsh-payment/tool/</lkl.perm.path>
                 <redis.host.w>192.168.60.59</redis.host.w>
                 <redis.port.w>6379</redis.port.w>
                 <redis.passwd.w></redis.passwd.w>
@@ -177,7 +166,7 @@
                 <dubbo.port>27001</dubbo.port>
                 <rest.port>7001</rest.port>
                 <wx.appid>wxe9bacb255411f556</wx.appid>
-                <wx.appsecret>6a778b772908cfb7dbd448d125e99795</wx.appsecret>
+                <wx.appsecret>2147adee25754d59ec08c75286b7709b</wx.appsecret>
                 <wx.mchid>1490831152</wx.mchid>
                 <wx.key>qkcsnGmFKg75eP9o5hZE59pOVEM26p0T</wx.key>
                 <wx.notify.url>http://pay.cepingkaoji.com/pay/v2/wxpay/notify</wx.notify.url>
@@ -189,34 +178,7 @@
                 <redis.passwd.r>ZuYBKSZdyRa7</redis.passwd.r>
             </properties>
         </profile>
-        <profile>
-            <id>qypro</id>
-            <properties>
-                <profile.name>qypro</profile.name>
-                <log.file>/home/work/data/payment-provider/logs</log.file>
-                <db.url>jdbc:mysql://192.168.60.152:5300/lsh_payment?useUnicode=true&amp;autoReconnect=true&amp;characterEncoding=UTF8&amp;allowMultiQueries=true</db.url>
-                <db.username>order</db.username>
-                <db.password>Lsh@Order2016</db.password>
-                <zookeeper.ip>192.168.70.5:2181</zookeeper.ip>
-                <dubbo.ip>127.0.0.1</dubbo.ip>
-                <dubbo.port>20890</dubbo.port>
-                <rest.port>9307</rest.port>
-                <qf.app.code>111</qf.app.code>
-                <qf.server_code>111</qf.server_code>
-                <qf.api>https://1111.qfpay.com</qf.api>
-                <wx.appid>1111</wx.appid>
-                <wx.mchid>111</wx.mchid>
-                <wx.key>111</wx.key>
-                <wx.appsecret>111</wx.appsecret>
-                <wx.notify.url>http://api.pay.lsh123.com/pay/wxpay/notify</wx.notify.url>
-                <redis.host.w>47.95.38.108</redis.host.w>
-                <redis.port.w>6379</redis.port.w>
-                <redis.passwd.w>ZuYBKSZdyRa7</redis.passwd.w>
-                <redis.host.r>47.95.38.108</redis.host.r>
-                <redis.port.r>6379</redis.port.r>
-                <redis.passwd.r>ZuYBKSZdyRa7</redis.passwd.r>
-            </properties>
-        </profile>
+
     </profiles>
 
 </project>
