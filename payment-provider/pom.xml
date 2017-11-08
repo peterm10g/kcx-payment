@@ -115,10 +115,10 @@
                 <dubbo.port>8082</dubbo.port>
                 <rest.port>8888</rest.port>
                 <wx.appid>wxe9bacb255411f556</wx.appid>
-                <wx.appsecret>2147adee25754d59ec08c75286b7709b</wx.appsecret>
+                <wx.appsecret>fcb85e708c5c5a2816044efb59f6534c</wx.appsecret>
                 <wx.mchid>1490831152</wx.mchid>
                 <wx.key>ssajjjwqQWcxzkjSWWjkdsaajksajkjk</wx.key>
-                <wx.notify.url>http://pay.cepingkaoji.com/pay/v2/wxpay/notify</wx.notify.url>
+                <wx.notify.url>http://pay.kaojiceping.com/pay/v2/wxpay/notify</wx.notify.url>
                 <redis.host.w>47.95.38.108</redis.host.w>
                 <redis.port.w>6379</redis.port.w>
                 <redis.passwd.w>ZuYBKSZdyRa7</redis.passwd.w>
@@ -140,10 +140,10 @@
                 <dubbo.port>27001</dubbo.port>
                 <rest.port>7001</rest.port>
                 <wx.appid>wxe9bacb255411f556</wx.appid>
-                <wx.appsecret>2147adee25754d59ec08c75286b7709b</wx.appsecret>
+                <wx.appsecret>fcb85e708c5c5a2816044efb59f6534c</wx.appsecret>
                 <wx.mchid>1490831152</wx.mchid>
                 <wx.key>ssajjjwqQWcxzkjSWWjkdsaajksajkjk</wx.key>
-                <wx.notify.url>http://pay.cepingkaoji.com/pay/v2/wxpay/notify</wx.notify.url>
+                <wx.notify.url>http://pay.kaojiceping.com/pay/v2/wxpay/notify</wx.notify.url>
                 <redis.host.w>47.95.38.108</redis.host.w>
                 <redis.port.w>6379</redis.port.w>
                 <redis.passwd.w>ZuYBKSZdyRa7</redis.passwd.w>
@@ -165,10 +165,10 @@
                 <dubbo.port>27001</dubbo.port>
                 <rest.port>7001</rest.port>
                 <wx.appid>wxe9bacb255411f556</wx.appid>
-                <wx.appsecret>2147adee25754d59ec08c75286b7709b</wx.appsecret>
+                <wx.appsecret>fcb85e708c5c5a2816044efb59f6534c</wx.appsecret>
                 <wx.mchid>1490831152</wx.mchid>
                 <wx.key>ssajjjwqQWcxzkjSWWjkdsaajksajkjk</wx.key>
-                <wx.notify.url>http://pay.cepingkaoji.com/pay/v2/wxpay/notify</wx.notify.url>
+                <wx.notify.url>http://pay.kaojiceping.com/pay/v2/wxpay/notify</wx.notify.url>
                 <redis.host.w>47.95.38.108</redis.host.w>
                 <redis.port.w>6379</redis.port.w>
                 <redis.passwd.w>ZuYBKSZdyRa7</redis.passwd.w>
